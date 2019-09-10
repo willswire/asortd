@@ -11,3 +11,17 @@
 - A brief (one or two paragraph) discussion of how you intend to implement the project (i.e. what technologies, code layout, general design guidelines).
   - We intend to utilize the basic web technologies demonstrated in class.  We plan to implement functionality offered by the jQuery library for basic implementation of sorting algorithms.  Visual elements (such as icons and color palettes) will be supplied from open source repositories on the internet, yet the overall layout/design will be our own.
 - A brief listing of who will be responsible for what during the design and development process.
+  - Muhammet Aydin
+    - Sort Algorithm Generation
+  - Scott Benton
+    - Algorithm Animation
+    - UI Implementation
+  - Charles Lambert
+    - Graphic Design
+    - Site Layout/Architecture
+  - Connor Onweller
+    - Sort Algorithm Generation
+  - William Walker
+    - Graphic design
+    - Site Layout/Architecture
+  - **NOTE**: Although these are very rigidly defined roles, we expect them to be highly variable, as we would like all members of the team to contribute to and learn about all portions of the project
