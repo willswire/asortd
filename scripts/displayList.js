@@ -1,32 +1,52 @@
+// BLOCK_WIDTH: Width in pixels for displaying blocks
+var BLOCK_WIDTH = 10
+// BLOCK_OFFSET: The space between blocks in pixels
+var BLOCK_OFFSET = 15
+// BLOCK_HEIGHT_COEF: The coefficient in pixel that a block height is
+//  multiplied to determine the height for displaying a block
+var BLOCK_HEIGHT_COEF = 5
+// ANIMATE_SPEED: Speed at which each animation occurs
+var ANIMATE_SPEED = 100
+
+
 // Class: Block
 // Attributes:
 //      Number Height: the height of the block
-//      String id: name identifying block
+//      Number id: ID number identifying the block
 function Block(id, height) {
-    this.id = 'block' + id;
+    this.id = id;
     this.height = height;
 }
 
-// BLOCKS: List of items being sorted, where each element represent the block
-//      height
-var BLOCKS = [new Block(1, 5), new Block(2, 10), new Block(3, 2), new Block(4, 8)];
-// BLOCK_WIDTH: Width in pixels for displaying blocks
-var BLOCK_WIDTH = 20
-// BLOCK_OFFSET: The space between blocks in pixels
-var BLOCK_OFFSET = 30
-// BLOCK_HEIGHT_COEF: The coefficient in pixel that a block height is
-//  multiplied to determine the height for displaying a block
-var BLOCK_HEIGHT_COEF = 10
 
-// CreateBlock :: Block, Number  -> String
+// randomkArray :: Number, Number  -> [Block]
+// Description: Creates an array of size length with blocks ranging in height
+//      from 1 to maxval
+// Arguments:
+//      Number length: the number of blocks in the resultant array
+//      Number maxval: the maximum possible value for a block's height in the
+//          array
+// Returns:
+//      An array of size length with blocks ranging in height
+//          from 1 to maxval
+function randomkArray(length, maxval) {
+    blocks = []
+    for (let i = 0; i < length; ++i) {
+        height = Math.floor((Math.random() * maxval) + 1);
+        blocks.push(new Block(i, height));
+    }
+    return blocks;
+}
+
+// createBlock :: Block, Number  -> String
 // Description: Creates html representation of a Block
-// Consumes:
+// Arguments:
 //      Block block: the block being drawn
 //      Number idx: the index of the block
 // Returns:
 //      The html object representing the block in a string
-function CreateBlock(block, idx) {
-    var block = '<div class="sort_block" id="' + block.id + '" ' +
+function createBlock(block, idx) {
+    var block = '<div class="sort_block" id="block' + block.id + '" ' +
         'style="position:absolute;bottom:0px;left:' + 
         (BLOCK_OFFSET*idx) + 'px;background:black;width:' + BLOCK_WIDTH +
         'px;height:' + (BLOCK_HEIGHT_COEF*block.height) + 'px;">' +
@@ -35,39 +55,58 @@ function CreateBlock(block, idx) {
     
 }
 
-// DrawBlocks :: String, [Block]  -> None
+// drawBlocks :: String, [Block]  -> None
 // Description: Draws the given blocks being displayed in the given container
-// Consumes:
+// Arguments:
 //      String containerID: the name of the html object in which blocks will be
 //          displayed
 //      [Block] blockList: the list representation of the blocks being sorted
-function DrawBlocks(containerID, blockList) {
+function drawBlocks(containerID, blockList) {
     $(containerID).html('');
     blockList.forEach(function(block,idx) {
-        $(containerID).append(CreateBlock(block,idx));
+        $(containerID).append(createBlock(block,idx));
     });
 }
 
-// UpdateBlocks :: String, [Block]  -> None
+// updateBlocks :: [Block]  -> None
 // Description: Animates and updates the given blocks being displayed in the
 //      given container
-// Consumes:
-//      String containerID: the name of the html object in which blocks will be
-//          displayed
+// Arguments:
 //      [Block] blockList: the list representation of the blocks being sorted
-function UpdateBlocks(containerID, blockList) {
+function updateBlocks(blockList) {
     blockList.forEach(function(block,idx) {
-        $('#' + block.id).animate({left: (BLOCK_OFFSET * idx) + 'px'});
+        $('#block' + block.id).animate({left: (BLOCK_OFFSET * idx) + 'px'}, {duration: ANIMATE_SPEED});
     });
 }
+
+// bubbleSort :: [Block]  -> None
+// Description: Implementation of the bubble sort algorithm, displaying the
+//      updateposition on the webpage after each movement in the list being
+//      sorted
+// Arguments:
+//      [Block] blockList: the list of blocks to be sorted
+function bubbleSort(blockList){
+   var len = blockList.length;
+   for (var i = len-1; i>=0; i--){
+     for(var j = 1; j<=i; j++){
+       if(blockList[j-1].height>blockList[j].height){
+           var temp = blockList[j-1];
+           blockList[j-1]= blockList[j];
+           blockList[j]= temp;
+        }
+        updateBlocks(blockList);
+     }
+   }
+}
+
 
 // Executed when page is loaded
 $(function() {
-    DrawBlocks('#sorting_container', BLOCKS);
+    let blocks = randomkArray(40, 25)
+    drawBlocks('#sorting_container', blocks);
     
     // Just for testing
     $('#sorting_container').click(function(event){
-        BLOCKS.reverse();
-        UpdateBlocks('#sorting_container', BLOCKS);
+        bubbleSort(blocks);
     })
 });
