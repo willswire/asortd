@@ -40,7 +40,7 @@ function CreateBlock(block, idx) {
 // Consumes:
 //      String containerID: the name of the html object in which blocks will be
 //          displayed
-//      [Number] blockList: the list representation of the blocks being sorted
+//      [Block] blockList: the list representation of the blocks being sorted
 function DrawBlocks(containerID, blockList) {
     $(containerID).html('');
     blockList.forEach(function(block,idx) {
@@ -54,7 +54,7 @@ function DrawBlocks(containerID, blockList) {
 // Consumes:
 //      String containerID: the name of the html object in which blocks will be
 //          displayed
-//      [Number] blockList: the list representation of the blocks being sorted
+//      [Block] blockList: the list representation of the blocks being sorted
 function UpdateBlocks(containerID, blockList) {
     blockList.forEach(function(block,idx) {
         $('#' + block.id).animate({left: (BLOCK_OFFSET * idx) + 'px'});
