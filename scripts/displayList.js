@@ -88,11 +88,11 @@ function updateBlocks(blockList) {
 //      sorted
 // Arguments:
 //      [Block] blockList: the list of blocks to be sorted
-function bubbleSort(blockList){
+function bubbleSort(blockList) {
    var len = blockList.length;
-   for (var i = len-1; i>=0; i--){
-     for(var j = 1; j<=i; j++){
-       if(blockList[j-1].height>blockList[j].height){
+   for (var i = len - 1; i >= 0; i--) {
+     for(var j = 1; j <= i; j++) {
+       if(blockList[j-1].height > blockList[j].height) {
            var temp = blockList[j-1];
            blockList[j-1]= blockList[j];
            blockList[j]= temp;
@@ -109,7 +109,7 @@ $(function() {
     drawBlocks('#sorting_container', blocks);
     
     // Just for testing
-    $('#sorting_container').click(function(event){
+    $('#sorting_container').click(function(event) {
         bubbleSort(blocks);
     })
 });
