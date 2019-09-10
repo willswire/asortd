@@ -1,73 +1,78 @@
+var BLOCK_WIDTH = 10
+var BLOCK_YPOS_OFFSET = 15
+var BLOCK_HEIGHT_COEF = 5
+var ANIMATION_SPEED = 100
+
 // Class: Block
 // Attributes:
 //      Number Height: the height of the block
-//      String id: name identifying block
+//      Number id: ID number identifying the block
 function Block(id, height) {
-    this.id = 'block' + id;
+    this.id = id;
     this.height = height;
 }
 
-// BLOCKS: List of items being sorted, where each element represent the block
-//      height
-var BLOCKS = [new Block(1, 5), new Block(2, 10), new Block(3, 2), new Block(4, 8)];
-// BLOCK_WIDTH: Width in pixels for displaying blocks
-var BLOCK_WIDTH = 20
-// BLOCK_OFFSET: The space between blocks in pixels
-var BLOCK_OFFSET = 30
-// BLOCK_HEIGHT_COEF: The coefficient in pixel that a block height is
-//  multiplied to determine the height for displaying a block
-var BLOCK_HEIGHT_COEF = 10
+function randBlockArray(length, maxval) {
+    blocks = []
+    for (let i = 0; i < length; ++i) {
+        height = Math.floor((Math.random() * maxval) + 1);
+        blocks.push(new Block(i, height));
+    }
+    return blocks;
+}
 
-// CreateBlock :: Block, Number  -> String
-// Description: Creates html representation of a Block
-// Consumes:
-//      Block block: the block being drawn
-//      Number idx: the index of the block
-// Returns:
-//      The html object representing the block in a string
-function CreateBlock(block, idx) {
-    var block = '<div class="sort_block" id="' + block.id + '" ' +
-        'style="position:absolute;bottom:0px;left:' + 
-        (BLOCK_OFFSET*idx) + 'px;background:black;width:' + BLOCK_WIDTH +
-        'px;height:' + (BLOCK_HEIGHT_COEF*block.height) + 'px;">' +
+function createBlockHTML(block, idx) {
+    var block = '<div class="sort_block "' +
+        'id="block' + block.id + '" ' +
+        'style="position:absolute;' +
+        'bottom:0px;' +
+        'left:' + (BLOCK_YPOS_OFFSET*idx) +'px;' +
+        'background:black;' +
+        'width:' + BLOCK_WIDTH + 'px;' +
+        'height:' + (BLOCK_HEIGHT_COEF*block.height) + 'px;">' +
         '</div>';
     return block;
-    
 }
 
-// DrawBlocks :: String, [Block]  -> None
-// Description: Draws the given blocks being displayed in the given container
-// Consumes:
-//      String containerID: the name of the html object in which blocks will be
-//          displayed
-//      [Block] blockList: the list representation of the blocks being sorted
-function DrawBlocks(containerID, blockList) {
-    $(containerID).html('');
-    blockList.forEach(function(block,idx) {
-        $(containerID).append(CreateBlock(block,idx));
+function drawBlocks(containerID, blockArr) {
+    blockArr.forEach(function(block,idx) {
+        $(containerID).append(createBlockHTML(block,idx));
     });
 }
 
-// UpdateBlocks :: String, [Block]  -> None
-// Description: Animates and updates the given blocks being displayed in the
-//      given container
-// Consumes:
-//      String containerID: the name of the html object in which blocks will be
-//          displayed
-//      [Block] blockList: the list representation of the blocks being sorted
-function UpdateBlocks(containerID, blockList) {
-    blockList.forEach(function(block,idx) {
-        $('#' + block.id).animate({left: (BLOCK_OFFSET * idx) + 'px'});
+function redrawBlocks(blockArr) {
+    blockArr.forEach(function(block,idx) {
+        var newLeft = (BLOCK_YPOS_OFFSET * idx)
+        if ($('#block' + block.id).css("left") != newLeft) {
+            $('#block' + block.id).animate({left: newLeft + 'px'}, {duration: ANIMATION_SPEED});
+        }
     });
+}
+
+function bubbleSort(blockArr) {
+   var len = blockArr.length;
+   for (var i = len - 1; i >= 0; i--) {
+     for(var j = 1; j <= i; j++) {
+       if(blockArr[j-1].height > blockArr[j].height) {
+           var temp = blockArr[j-1];
+           blockArr[j-1]= blockArr[j];
+           blockArr[j]= temp;
+        }
+        redrawBlocks(blockArr);
+     }
+   }
 }
 
 // Executed when page is loaded
 $(function() {
-    DrawBlocks('#sorting_container', BLOCKS);
+    var containerID = '#sorting_container'
+    var blocks = randBlockArray(40, 25)
+    $(containerID).html('');
+
+    drawBlocks(containerID, blocks);
     
     // Just for testing
-    $('#sorting_container').click(function(event){
-        BLOCKS.reverse();
-        UpdateBlocks('#sorting_container', BLOCKS);
+    $(containerID).click(function(event) {
+        bubbleSort(blocks);
     })
 });
