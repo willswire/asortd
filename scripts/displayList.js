@@ -50,17 +50,17 @@ function redrawBlocks(blockArr) {
 }
 
 function bubbleSort(blockArr) {
-   var len = blockArr.length;
-   for (var i = len - 1; i >= 0; i--) {
-     for(var j = 1; j <= i; j++) {
-       if(blockArr[j-1].height > blockArr[j].height) {
-           var temp = blockArr[j-1];
-           blockArr[j-1]= blockArr[j];
-           blockArr[j]= temp;
+    var len = blockArr.length;
+    for (var i = len - 1; i >= 0; i--) {
+        for(var j = 1; j <= i; j++) {
+            if(blockArr[j-1].height > blockArr[j].height) {
+                var temp = blockArr[j-1];
+                blockArr[j-1]= blockArr[j];
+                blockArr[j]= temp;
+            }
+            redrawBlocks(blockArr);
         }
-        redrawBlocks(blockArr);
-     }
-   }
+    }
 }
 
 // Executed when page is loaded
