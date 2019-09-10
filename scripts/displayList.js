@@ -75,7 +75,10 @@ function drawBlocks(containerID, blockList) {
 //      [Block] blockList: the list representation of the blocks being sorted
 function updateBlocks(blockList) {
     blockList.forEach(function(block,idx) {
-        $('#block' + block.id).animate({left: (BLOCK_OFFSET * idx) + 'px'}, {duration: ANIMATE_SPEED});
+        var newLeft = (BLOCK_OFFSET * idx)
+        if ($('#block' + block.id).css("left") != newLeft) {
+            $('#block' + block.id).animate({left: newLeft + 'px'}, {duration: ANIMATE_SPEED});
+        }
     });
 }
 
