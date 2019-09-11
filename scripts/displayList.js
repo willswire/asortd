@@ -71,7 +71,7 @@ $(function() {
     drawBlocks(containerID, blocks);
     
     // Just for testing
-    $(containerID).click(function(event) {
+    $("#sort_button").click(function(event) {
         bubbleSort(blocks);
     })
 });
