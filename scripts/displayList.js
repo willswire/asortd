@@ -1,22 +1,24 @@
 var BLOCK_WIDTH = 10
 var BLOCK_YPOS_OFFSET = 15
-var BLOCK_HEIGHT_COEF = 5
+var MAX_BLOCK_HEIGHT_PERCENT = 75
 var ANIMATION_SPEED = 100
 
 // Class: Block
 // Attributes:
 //      Number Height: the height of the block
 //      Number id: ID number identifying the block
-function Block(id, height) {
+function Block(id, width, height) {
     this.id = id;
+    this.width = width;
     this.height = height;
 }
 
 function randBlockArray(length, maxval) {
     blocks = []
+    var width = 100 / length;
     for (let i = 0; i < length; ++i) {
-        height = Math.floor((Math.random() * maxval) + 1);
-        blocks.push(new Block(i, height));
+        height = Math.floor((Math.random() * MAX_BLOCK_HEIGHT_PERCENT) + 1);
+        blocks.push(new Block(i, width, height));
     }
     return blocks;
 }
@@ -26,9 +28,9 @@ function createBlockHTML(block, idx) {
         'id="block' + block.id + '" ' +
         'style="position:absolute;' +
         'bottom:0px;' +
-        'left:' + (BLOCK_YPOS_OFFSET*idx) +'px;' +
-        'width:' + BLOCK_WIDTH + 'px;' +
-        'height:' + (BLOCK_HEIGHT_COEF*block.height) + 'px;">' +
+        'left:' + (block.width*idx) +'%;' +
+        'width:' + (block.width - 1) + '%;' +
+        'height:' + (block.height) + '%;">' +
         '</div>';
     return block;
 }
@@ -41,7 +43,7 @@ function drawBlocks(containerID, blockArr) {
 
 function redrawBlocks(blockArr) {
     blockArr.forEach(function(block,idx) {
-        var newLeft = (BLOCK_YPOS_OFFSET * idx)
+        var newLeft = (block.width * idx)
         if ($('#block' + block.id).css("left") != newLeft) {
             $('#block' + block.id).animate({left: newLeft + 'px'}, {duration: ANIMATION_SPEED});
         }

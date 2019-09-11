@@ -17,7 +17,7 @@ h1 {
 #main {
     position: relative;
     margin: 5vh 25vw 5vh 25vw;
-    padding: 25vh 0 0 0;
+    height: 400px;
     background-color: #003c71;
     border: 3px solid white;
     border-radius: 10px;
@@ -25,9 +25,9 @@ h1 {
 }
 
 #sorting_container {
-    position: inherit;
-    margin: 5vh;
-    width: inherit;
+    height: 100%;
+    width: 100%;
+    position: relative;
 }
 
 .block {
