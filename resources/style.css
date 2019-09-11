@@ -1,0 +1,35 @@
+@font-face {
+    font-family: VanguardDemiBold;
+    src: url(Vanguard-CF-Demi-Bold.otf);
+}
+
+body {
+    background: #ffd200 url("yellow-abstract-panel.jpg") no-repeat fixed center; 
+}
+
+h1 {
+    font-family: VanguardDemiBold;
+    text-align: center;
+    color: #003c71;
+    font-size: 6vw;
+}
+
+#main {
+    position: relative;
+    margin: 5vh 25vw 5vh 25vw;
+    padding: 25vh 0 0 0;
+    background-color: #003c71;
+    border: 3px solid white;
+    border-radius: 10px;
+    width: 50vw;
+}
+
+#sorting_container {
+    position: inherit;
+    margin: 5vh;
+    width: inherit;
+}
+
+.block {
+    background: #00a0df;
+}
