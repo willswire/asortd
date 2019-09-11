@@ -22,12 +22,11 @@ function randBlockArray(length, maxval) {
 }
 
 function createBlockHTML(block, idx) {
-    var block = '<div class="sort_block "' +
+    var block = '<div class="sort_block block"' +
         'id="block' + block.id + '" ' +
         'style="position:absolute;' +
         'bottom:0px;' +
         'left:' + (BLOCK_YPOS_OFFSET*idx) +'px;' +
-        'background:black;' +
         'width:' + BLOCK_WIDTH + 'px;' +
         'height:' + (BLOCK_HEIGHT_COEF*block.height) + 'px;">' +
         '</div>';
