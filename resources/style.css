@@ -3,8 +3,44 @@
     src: url(Vanguard-CF-Demi-Bold.otf);
 }
 
+@font-face {
+    font-family: GreycliffBold;
+    src: url(Greycliff-CF-Bold.otf);
+}
+
 body {
     background: #ffd200 url("yellow-abstract-panel.jpg") no-repeat fixed center; 
+}
+
+#controls {
+    position: relative;
+    margin: 0 25vw 0 25vw;
+    padding: 0;
+    width: 50vw;
+}
+
+button {
+    margin: 0 auto;
+    display: inline-block;
+    background-color: #003c71;
+    border: 3px solid white;
+    border-radius: 10px;
+    font-family: GreycliffBold;
+    color: white;
+    font-size: 1vw;
+    padding: 1vw;
+}
+
+button:hover {
+    margin: 0 auto;
+    display: inline-block;
+    background-color: #00a0df;
+    border: 3px solid white;
+    border-radius: 10px;
+    font-family: GreycliffBold;
+    color: white;
+    font-size: 1vw;
+    padding: 1vw;
 }
 
 h1 {
