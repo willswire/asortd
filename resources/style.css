@@ -8,28 +8,32 @@
     src: url(Greycliff-CF-Bold.otf);
 }
 
+@font-face {
+    font-family: Greycliff;
+    src: url(Greycliff-CF-Regular.otf);
+}
+
 body {
-    background: #ffd200 url("yellow-abstract-panel.jpg") no-repeat fixed center; 
+    background: #ffd200 url("yellow-abstract-panel.jpg") no-repeat fixed center;
+    font-size: 75%;
 }
 
 #controls {
     position: relative;
-    margin: 0 25vw 0 25vw;
-    padding: 0;
-    width: 50vw;
+    margin: 2.5% auto;
+    width: 25%;
 }
 
 button {
     margin: 0 auto;
-    display: inline-block;
     background-color: #003c71;
     border: 3px solid white;
     border-radius: 10px;
     font-family: GreycliffBold;
     color: white;
     font-size: 1.5vw;
-    padding: 1vw;
-    padding: 1% 2% 1% 2%;
+    width: 100%;
+    padding: 2.5%;
 }
 
 button:hover {
@@ -47,12 +51,13 @@ h1 {
     font-family: VanguardDemiBold;
     text-align: center;
     color: #003c71;
-    font-size: 6vw;
+    font-size: 6em;
 }
 
 #main {
     position: relative;
-    margin: 5vh 25vw 5vh 25vw;
+    width: 50%;
+    margin: 0 auto;
     height: 400px;
     background-color: #003c71;
     border: 3px solid white;
@@ -68,4 +73,34 @@ h1 {
 
 .block {
     background: #00a0df;
+}
+
+#info {
+    border: 3px solid white;
+    border-radius: 10px;
+    background-color: white;
+    width: 75%;
+    margin: 2.5% auto;
+    padding: 1% 2.5% 1% 2.5%;
+}
+
+h2 {
+    font-family: VanguardDemiBold;
+    text-align: left;
+    color: #000000;
+    font-size: 3em;
+    line-height: 0.5em;
+}
+
+p {
+    font-family: Greycliff;
+    font-size: 1.75em;
+    line-height: 1.3em;
+}
+
+#header {
+    position: relative;
+    margin: 2.5% auto;
+    width: 100%;
+    height: 25%;
 }
