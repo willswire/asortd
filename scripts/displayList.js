@@ -7,18 +7,19 @@ var ANIMATION_SPEED = 100
 // Attributes:
 //      Number Height: the height of the block
 //      Number id: ID number identifying the block
-function Block(id, width, height) {
+function Block(id, idx, width, height) {
     this.id = id;
+    this.prevIdx= idx;
     this.width = width;
     this.height = height;
 }
 
 function randBlockArray(length, maxval) {
-    blocks = []
+    var blocks = []
     var width = 100 / length;
     for (let i = 0; i < length; ++i) {
         height = Math.floor((Math.random() * MAX_BLOCK_HEIGHT_PERCENT) + 1);
-        blocks.push(new Block(i, width, height));
+        blocks.push(new Block(i, i, width, height));
     }
     return blocks;
 }
@@ -43,9 +44,17 @@ function drawBlocks(containerID, blockArr) {
 
 function redrawBlocks(blockArr) {
     blockArr.forEach(function(block,idx) {
-        var newLeft = (block.width * idx)
-        if ($('#block' + block.id).css("left") != newLeft) {
-            $('#block' + block.id).animate({left: newLeft + 'px'}, {duration: ANIMATION_SPEED});
+        if (block.prevIdx != idx) {
+            $('#block' + block.id).animate(
+                {left: (block.width * idx) + '%'},
+                {
+                    duration: ANIMATION_SPEED, 
+                    easing: 'linear', 
+                }
+            );
+            block.prevIdx = idx;
+        } else {
+             $('#block' + block.id).delay(ANIMATION_SPEED);
         }
     });
 }
