@@ -14,7 +14,7 @@ function Block(id, width, height) {
 }
 
 function randBlockArray(length, maxval) {
-    blocks = []
+    var blocks = []
     var width = 100 / length;
     for (let i = 0; i < length; ++i) {
         height = Math.floor((Math.random() * MAX_BLOCK_HEIGHT_PERCENT) + 1);
@@ -41,16 +41,24 @@ function drawBlocks(containerID, blockArr) {
     });
 }
 
-function redrawBlocks(blockArr) {
-    blockArr.forEach(function(block,idx) {
-        var newLeft = (block.width * idx)
-        if ($('#block' + block.id).css("left") != newLeft) {
-            $('#block' + block.id).animate({left: newLeft + 'px'}, {duration: ANIMATION_SPEED});
+function redrawBlocks(blockArr, prevArr) {
+    blockArr.forEach(function(block, idx) {
+        if (block != prevArr[idx]) {
+            $('#block' + block.id).animate(
+                {left: (block.width * idx) + '%'},
+                {
+                    duration: ANIMATION_SPEED, 
+                    easing: 'linear', 
+                }
+            );
+        } else {
+             $('#block' + block.id).delay(ANIMATION_SPEED);
         }
     });
 }
 
 function bubbleSort(blockArr) {
+    var prevArr = blockArr.slice(0);
     var len = blockArr.length;
     for (var i = len - 1; i >= 0; i--) {
         for(var j = 1; j <= i; j++) {
@@ -59,7 +67,8 @@ function bubbleSort(blockArr) {
                 blockArr[j-1]= blockArr[j];
                 blockArr[j]= temp;
             }
-            redrawBlocks(blockArr);
+            redrawBlocks(blockArr, prevArr);
+            prevArr = blockArr.slice(0);
         }
     }
 }
