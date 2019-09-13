@@ -1,10 +1,10 @@
-var BLOCK_WIDTH = 10
-var BLOCK_YPOS_OFFSET = 15
-var MAX_BLOCK_HEIGHT_PERCENT = 75
-var ANIMATION_SPEED = 100
-
-var BLOCK_COLOR = '#00a0df'
-var BLOCK_HIGHLIGHT = '#f5cd5d'
+const BLOCK_WIDTH = 10
+const BLOCK_YPOS_OFFSET = 15
+const MAX_BLOCK_HEIGHT_PERCENT = 75
+const ANIMATION_SPEED = 100
+const BLOCK_COLOR = '#00a0df'
+const BLOCK_HIGHLIGHT = '#f5cd5d'
+const NUM_BLOCKS = 20;
 
 // Class: Block
 // Attributes:
@@ -71,7 +71,11 @@ function redrawBlocks(blockArr, prevArr) {
     });
 }
 
+
+
 function bubbleSort(blockArr) {
+    var steps = [];
+
     var prevArr = blockArr.slice(0);
     var len = blockArr.length;
     for (var i = len - 1; i >= 0; i--) {
@@ -80,17 +84,20 @@ function bubbleSort(blockArr) {
                 var temp = blockArr[j - 1];
                 blockArr[j - 1] = blockArr[j];
                 blockArr[j] = temp;
+                steps.push([...blockArr]);
             }
             redrawBlocks(blockArr, prevArr);
             prevArr = blockArr.slice(0);
         }
     }
+
+    console.log(steps);
 }
 
 // Executed when page is loaded
 $(function () {
     var containerID = '#sorting_container'
-    var blocks = randBlockArray(40, 25)
+    var blocks = randBlockArray(NUM_BLOCKS, 25)
     $(containerID).html('');
 
     drawBlocks(containerID, blocks);
