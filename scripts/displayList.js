@@ -1,7 +1,10 @@
 var BLOCK_WIDTH = 10
 var BLOCK_YPOS_OFFSET = 15
 var MAX_BLOCK_HEIGHT_PERCENT = 75
-var ANIMATION_SPEED = 100
+var ANIMATION_SPEED = 300
+
+var BLOCK_COLOR = '#00a0df'
+var BLOCK_HIGHLIGHT = '#f5cd5d'
 
 // Class: Block
 // Attributes:
@@ -24,11 +27,11 @@ function randBlockArray(length, maxval) {
 }
 
 function createBlockHTML(block, idx) {
-    var block = '<div class="sort_block block"' +
+    var block = '<div class="block"' +
         'id="block' + block.id + '" ' +
         'style="position:absolute;' +
         'bottom:0px;' +
-        'left:' + (block.width*idx) +'%;' +
+        'left:' + (block.width * idx) + '%;' +
         'width:' + (block.width - 1) + '%;' +
         'height:' + (block.height) + '%;">' +
         '</div>';
@@ -36,23 +39,28 @@ function createBlockHTML(block, idx) {
 }
 
 function drawBlocks(containerID, blockArr) {
-    blockArr.forEach(function(block,idx) {
-        $(containerID).append(createBlockHTML(block,idx));
+    blockArr.forEach(function (block, idx) {
+        $(containerID).append(createBlockHTML(block, idx));
     });
 }
 
 function redrawBlocks(blockArr, prevArr) {
-    blockArr.forEach(function(block, idx) {
+    blockArr.forEach(function (block, idx) {
         if (block != prevArr[idx]) {
-            $('#block' + block.id).animate(
-                {left: (block.width * idx) + '%'},
-                {
-                    duration: ANIMATION_SPEED, 
-                    easing: 'linear', 
+            $('#block' + block.id).animate({
+                left: (block.width * idx) + '%'
+            }, {
+                duration: ANIMATION_SPEED,
+                easing: 'linear',
+                start: function () {
+                    $('#block' + block.id).css({"backgroundColor":BLOCK_HIGHLIGHT});
+                },
+                done: function () {
+                    $('#block' + block.id).css({"backgroundColor":BLOCK_COLOR});
                 }
-            );
+            });
         } else {
-             $('#block' + block.id).delay(ANIMATION_SPEED);
+            $('#block' + block.id).delay(ANIMATION_SPEED);
         }
     });
 }
@@ -61,11 +69,11 @@ function bubbleSort(blockArr) {
     var prevArr = blockArr.slice(0);
     var len = blockArr.length;
     for (var i = len - 1; i >= 0; i--) {
-        for(var j = 1; j <= i; j++) {
-            if(blockArr[j-1].height > blockArr[j].height) {
-                var temp = blockArr[j-1];
-                blockArr[j-1]= blockArr[j];
-                blockArr[j]= temp;
+        for (var j = 1; j <= i; j++) {
+            if (blockArr[j - 1].height > blockArr[j].height) {
+                var temp = blockArr[j - 1];
+                blockArr[j - 1] = blockArr[j];
+                blockArr[j] = temp;
             }
             redrawBlocks(blockArr, prevArr);
             prevArr = blockArr.slice(0);
@@ -74,15 +82,15 @@ function bubbleSort(blockArr) {
 }
 
 // Executed when page is loaded
-$(function() {
+$(function () {
     var containerID = '#sorting_container'
     var blocks = randBlockArray(40, 25)
     $(containerID).html('');
 
     drawBlocks(containerID, blocks);
-    
+
     // Just for testing
-    $(containerID).click(function(event) {
+    $("#sort_button").click(function (event) {
         bubbleSort(blocks);
     })
 });
