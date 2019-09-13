@@ -53,6 +53,8 @@ function redrawBlocks(blockArr, prevArr) {
                 duration: ANIMATION_SPEED,
                 easing: 'linear',
                 start: function () {
+                    // bring element to front
+                    $('#block' + block.id).parent().append($('#block' + block.id));
                     $('#block' + block.id).css({"backgroundColor":BLOCK_HIGHLIGHT});
                 },
                 done: function () {
