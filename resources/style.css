@@ -55,21 +55,30 @@ h1 {
     margin: 0;
 }
 
-#main {
+#left-main {
+    float: left;
     position: relative;
     width: 50%;
     margin: 0 auto;
     padding-bottom: 25%;
-    background-color: #003c71;
-    border: 3px solid white;
-    border-radius: 10px;
-    width: 50vw;
+
+}
+
+#right-main {
+    position: relative;
+    width: 50%;
+    margin: 0 50%;
+    padding-bottom: 25%;
 }
 
 #sorting_container {
     height: 100%;
-    width: 100%;
+    width: 75%;
     position: absolute;
+    background-color: #003c71;
+    border: 3px solid white;
+    border-radius: 10px;
+    margin: 0 auto;
 }
 
 .block {
