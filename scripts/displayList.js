@@ -43,9 +43,9 @@ function drawBlocks(containerID, blockArr) {
 
 function redrawBlocks(blockArr) {
     blockArr.forEach(function(block,idx) {
-        var newLeft = (block.width * idx)
+        var newLeft = (block.width * idx);
         if ($('#block' + block.id).css("left") != newLeft) {
-            $('#block' + block.id).animate({left: newLeft + 'px'}, {duration: ANIMATION_SPEED});
+            $('#block' + block.id).animate({left: newLeft + '%'}, {duration: ANIMATION_SPEED});
         }
     });
 }
