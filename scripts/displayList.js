@@ -1,7 +1,7 @@
 var BLOCK_WIDTH = 10
 var BLOCK_YPOS_OFFSET = 15
 var MAX_BLOCK_HEIGHT_PERCENT = 75
-var ANIMATION_SPEED = 300
+var ANIMATION_SPEED = 100
 
 var BLOCK_COLOR = '#00a0df'
 var BLOCK_HIGHLIGHT = '#f5cd5d'
@@ -53,12 +53,16 @@ function redrawBlocks(blockArr, prevArr) {
                 duration: ANIMATION_SPEED,
                 easing: 'linear',
                 start: function () {
-                    // bring element to front
-                    $('#block' + block.id).parent().append($('#block' + block.id));
-                    $('#block' + block.id).css({"backgroundColor":BLOCK_HIGHLIGHT});
+                    $('#block' + block.id).css({
+                        "backgroundColor":BLOCK_HIGHLIGHT,
+                        "z-index": 9999
+                    });
                 },
                 done: function () {
-                    $('#block' + block.id).css({"backgroundColor":BLOCK_COLOR});
+                    $('#block' + block.id).css({
+                        "backgroundColor":BLOCK_COLOR,
+                        "z-index": 1
+                    });
                 }
             });
         } else {
