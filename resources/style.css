@@ -24,7 +24,7 @@ body {
     width: 25%;
 }
 
-button {
+#sort_button {
     margin: 0 auto;
     background-color: #003c71;
     border: 3px solid white;
@@ -34,9 +34,10 @@ button {
     font-size: 1.5vw;
     width: 100%;
     padding: 2.5%;
+    outline: none;
 }
 
-button:hover {
+#sort_button:hover {
     margin: 0 auto;
     display: inline-block;
     background-color: #00a0df;
@@ -45,25 +46,24 @@ button:hover {
     font-family: GreycliffBold;
     color: white;
     font-size: 1.5vw;
+    outline: none;
 }
 
 h1 {
     font-family: VanguardDemiBold;
-    text-align: center;
+    text-align: left;
     color: #003c71;
-    font-size: 6em;
+    font-size: 4em !important;
     margin: 0;
 }
 
 #main {
     position: relative;
-    width: 50%;
     margin: 0 auto;
     padding-bottom: 25%;
     background-color: #003c71;
     border: 3px solid white;
     border-radius: 10px;
-    width: 50vw;
 }
 
 #sorting_container {
@@ -80,8 +80,6 @@ h1 {
     border: 3px solid white;
     border-radius: 10px;
     background-color: white;
-    width: 75%;
-    margin: 2.5% auto;
     padding: 1% 2.5% 1% 2.5%;
 }
 
@@ -89,13 +87,13 @@ h2 {
     font-family: VanguardDemiBold;
     text-align: left;
     color: #000000;
-    font-size: 3em;
+    font-size: 2em;
     line-height: 0.5em;
 }
 
 p {
     font-family: Greycliff;
-    font-size: 1.75em;
+    font-size: 1.3em;
     line-height: 1.3em;
 }
 

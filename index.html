@@ -10,31 +10,51 @@
   <script type='text/javascript' src='scripts/displayList.js'></script>
 
   <link rel="stylesheet" href="/resources/style.css">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
   <!-- Div that contains the header text -->
-  <div id="header">
+  <div id="header" class="container">
     <h1>Sorting Algorithms</h1>
   </div>
   <!-- Div that contains the main sorting display -->
-  <div id="main">
-    <!-- Div that displays the array being sorted -->
-    <div id="sorting_container"></div>
-  </div>
-  <!-- Div that contains the controls -->
-  <div id="controls">
-    <button id="sort_button">GO</button>
-  </div>
-  <!-- Div that contains the info about each sort -->
-  <div id="info">
-    <h2>Bubble Sort</h2>
-    <p>Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly steps through
-      the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is
-      repeated until the list is sorted. The algorithm, which is a comparison sort, is named for the way smaller or
-      larger elements "bubble" to the top of the list. Although the algorithm is simple, it is too slow and impractical
-      for most problems even when compared to insertion sort. Bubble sort can be practical if the input is in mostly
-      sorted order with some out-of-order elements nearly in position.</p>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div id="main">
+          <!-- Div that displays the array being sorted -->
+          <div id="sorting_container"></div>
+        </div>
+        <!-- Div that contains the controls -->
+        <div id="controls">
+          <button id="sort_button">GO</button>
+          <div class="card" style="margin-top:5%">
+            <span class="label label-primary" style="text-align:center">Animation Speed</span>
+            <input type="range" class="custom-range" min="25" max="100" id="customRange2">
+          </div>
+        </div>
+      </div>
+      <!-- Div that contains the info about each sort -->
+      <div class="col">
+        <div id="info">
+          <h2>Bubble Sort</h2>
+          <p>Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly steps
+            through
+            the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the
+            list is
+            repeated until the list is sorted. The algorithm, which is a comparison sort, is named for the way smaller
+            or
+            larger elements "bubble" to the top of the list. Although the algorithm is simple, it is too slow and
+            impractical
+            for most problems even when compared to insertion sort. Bubble sort can be practical if the input is in
+            mostly
+            sorted order with some out-of-order elements nearly in position.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 
