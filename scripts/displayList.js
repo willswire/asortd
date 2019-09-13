@@ -1,7 +1,10 @@
 var BLOCK_WIDTH = 10
 var BLOCK_YPOS_OFFSET = 15
 var MAX_BLOCK_HEIGHT_PERCENT = 75
-var ANIMATION_SPEED = 100
+var ANIMATION_SPEED = 300
+
+var BLOCK_COLOR = '#00a0df'
+var BLOCK_HIGHLIGHT = '#f5cd5d'
 
 // Class: Block
 // Attributes:
@@ -24,7 +27,7 @@ function randBlockArray(length, maxval) {
 }
 
 function createBlockHTML(block, idx) {
-    var block = '<div class="sort_block block"' +
+    var block = '<div class="block"' +
         'id="block' + block.id + '" ' +
         'style="position:absolute;' +
         'bottom:0px;' +
@@ -49,6 +52,12 @@ function redrawBlocks(blockArr, prevArr) {
             }, {
                 duration: ANIMATION_SPEED,
                 easing: 'linear',
+                start: function () {
+                    $('#block' + block.id).css({"backgroundColor":BLOCK_HIGHLIGHT});
+                },
+                done: function () {
+                    $('#block' + block.id).css({"backgroundColor":BLOCK_COLOR});
+                }
             });
         } else {
             $('#block' + block.id).delay(ANIMATION_SPEED);
