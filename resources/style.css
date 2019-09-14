@@ -80,13 +80,15 @@ h1 {
 	height: 400px;
 	background-color: #003c71;
 	border: 3px solid white;
-	border-radius: 10px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 #sorting_container {
 	height: 100%;
 	width: 100%;
-	position: relative;
+    position: relative;
+    margin: auto 0.5% auto 0.5%;
 }
 
 .block {
