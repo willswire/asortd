@@ -6,6 +6,8 @@ const BLOCK_COLOR = '#00a0df'
 const BLOCK_HIGHLIGHT = '#f5cd5d'
 const NUM_BLOCKS = 20;
 
+var currentIndex = 0;
+var paused = true;
 // Class: Block
 // Attributes:
 //      Number Height: the height of the block
@@ -44,9 +46,9 @@ function drawBlocks(containerID, blockArr) {
     });
 }
 
-function redrawBlocks(blockArr, prevArr) {
-    blockArr.forEach(function (block, idx) {
-        if (block != prevArr[idx]) {
+function redrawBlocks(currentArr, nextArr) {
+    nextArr.forEach(function (block, idx) {
+        if (block != currentArr[idx]) {
             $('#block' + block.id).animate({
                 left: (block.width * idx) + '%'
             }, {
@@ -54,13 +56,13 @@ function redrawBlocks(blockArr, prevArr) {
                 easing: 'linear',
                 start: function () {
                     $('#block' + block.id).css({
-                        "backgroundColor":BLOCK_HIGHLIGHT,
+                        "backgroundColor": BLOCK_HIGHLIGHT,
                         "z-index": 9999
                     });
                 },
                 done: function () {
                     $('#block' + block.id).css({
-                        "backgroundColor":BLOCK_COLOR,
+                        "backgroundColor": BLOCK_COLOR,
                         "z-index": 1
                     });
                 }
@@ -86,12 +88,27 @@ function bubbleSort(blockArr) {
                 blockArr[j] = temp;
                 steps.push([...blockArr]);
             }
-            redrawBlocks(blockArr, prevArr);
+            // redrawBlocks(blockArr, prevArr);
             prevArr = blockArr.slice(0);
         }
     }
 
     console.log(steps);
+    return steps;
+}
+
+function drawNextStep(steps, currentStep) {
+    if (currentStep >= 0 && currentStep + 1 < steps.length) {
+        redrawBlocks(steps[currentStep], steps[currentStep + 1]);
+        currentIndex++;
+    }
+}
+
+function drawPreviousStep(steps, currentStep) {
+    if (currentStep < steps.length && currentStep - 1 >= 0) {
+        redrawBlocks(steps[currentStep], steps[currentStep - 1]);
+        currentIndex--;
+    }
 }
 
 // Executed when page is loaded
@@ -102,8 +119,40 @@ $(function () {
 
     drawBlocks(containerID, blocks);
 
+    var steps = bubbleSort(blocks);
+
     // Just for testing
-    $("#sort_button").click(function (event) {
-        bubbleSort(blocks);
-    })
+    $("#sort_button").click(async function (event) {
+        if (paused) {
+            $("#sort_button").html('PAUSE');
+            paused = false;
+            for (var i = currentIndex; i < steps.length; i++) {
+                drawNextStep(steps, i);
+                await sleep(ANIMATION_SPEED);
+                if (paused) {
+                    break;
+                }
+            }
+            paused = true;
+        }
+        else{
+            $("#sort_button").html('START');
+            paused = true;
+        }
+        })
+
+    $("#prev_button").click(function () {
+        drawPreviousStep(steps, currentIndex);
+    });
+
+    $("#next_button").click(function () {
+        drawNextStep(steps, currentIndex);
+    });
+
 });
+
+async function sleep(ms) {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(ms), ms)
+    });
+}
