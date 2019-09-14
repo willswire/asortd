@@ -18,53 +18,47 @@ body {
 	font-size: 75%;
 }
 
-#controls {
-	position: fixed;
-	margin: 1% auto;
-	width: 25%;
+#control_panel {
+	position: relative;
+	margin: 2% auto;
+	width: 100%;
 }
 
-#sort_button {
-	margin: 0 auto;
+button {
+	outline: none !important;
+}
+
+.controls {
 	background-color: #003c71;
 	border: 3px solid white;
 	border-radius: 10px;
 	font-family: GreycliffBold;
 	color: white;
-	font-size: 1.5vw;
+	font-size: 1.3em;
 	width: 100%;
-	padding: 2.5%;
-	outline: none;
 }
 
-#sort_button:hover {
-	margin: 0 auto;
-	display: inline-block;
+.controls:hover {
 	background-color: #00a0df;
-	border: 3px solid white;
-	border-radius: 10px;
-	font-family: GreycliffBold;
-	color: white;
-	font-size: 1.5vw;
-	outline: none;
 }
 
 #slider {
-	margin: 0 2.5% 0 0;
+	margin: 0 auto;
 	background-color: #003c71;
 	border: 3px solid white;
 	border-radius: 10px;
 	font-family: GreycliffBold;
 	color: white;
-	font-size: 1.5vw;
+	font-size: 1.3em;
 	outline: none;
-	width: 200px;
+	width: 100%;
 }
 
 #sliderRange {
-	width: 95%;
-	margin: 0 auto;
+	width: 100%;
+	margin: 1% auto;
 	outline: none;
+	padding: 1%;
 }
 
 h1 {

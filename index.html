@@ -3,15 +3,14 @@
 
 <head>
 	<meta charset="UTF-8" />
-	<title></title>
-
+	<title>Sorting Algorithms</title>
+	<!-- JavaScript needed for this webpage -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 	<script type="text/javascript" src="scripts/displayList.js"></script>
-
+	<!-- Style Resources -->
 	<link rel="stylesheet" href="/resources/style.css" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -19,27 +18,42 @@
 	<div id="header" class="container">
 		<h1>Sorting Algorithms</h1>
 	</div>
-	<!-- Div that contains the main sorting display -->
+	<!-- Div that contains the main display -->
 	<div class="container">
+		<!-- Row that contains the two column structure -->
 		<div class="row">
+			<!-- Column that contains the sorting display and controls -->
 			<div class="col">
+				<!-- The main sorting display -->
 				<div id="main">
-					<!-- Div that displays the array being sorted -->
+					<!-- The container that holds all the items being sorted -->
 					<div id="sorting_container"></div>
 				</div>
-				<!-- Div that contains the controls -->
-				<div class="row" id="controls">
-					<div class="card col-md-auto" id="slider">
-						<span class="label label-primary" style="text-align:center">Speed</span>
+				<!-- Row that contains the controls, each control is in a column -->
+				<div class="row" id="control_panel">
+					<!-- Column that contains the previous button -->
+					<div class="col" style="padding-left: 0">
+						<button class="controls" id="prev_button"><-</button>
+					</div>
+					<!-- Column that contains the start button -->
+					<div class="col">
+						<button class="controls" id="sort_button">START</button>
+					</div>
+					<!-- Column that contains the next button -->
+					<div class="col" style="padding-right: 0">
+						<button class="controls" id="next_button">-></button>
+					</div>
+				</div>
+				<!-- Row that contains the speed controls-->
+				<div class="row" id="control_panel">
+					<div class="card col" id="slider">
+						<span class="label label-primary" style="text-align:center">SPEED</span>
 						<input type="range" class="custom-range" id="sliderRange" min="25" max="100"
 							id="customRange2" />
 					</div>
-					<button class="col" id="sort_button">GO</button>
-          <button class="col" id="prev_button">PREVIOUS</button>
-          <button class="col" id="next_button">NEXT</button>
 				</div>
 			</div>
-			<!-- Div that contains the info about each sort -->
+			<!-- Column that contains the info about each sort, and the dropdown to select sorts -->
 			<div class="col">
 				<div id="info">
 					<h2>Bubble Sort</h2>
