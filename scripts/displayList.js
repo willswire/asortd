@@ -131,6 +131,7 @@ $(function () {
                 }
             }
             paused = true;
+            $("#sort_button").html('START');
         }
         else {
             $("#sort_button").html('START');
