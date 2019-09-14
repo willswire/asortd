@@ -141,12 +141,16 @@ $(function () {
 
     $("#prev_button").click(function () {
         drawPreviousStep(steps, currentIndex);
-        currentIndex--;
+        if (currentIndex > 0) {
+            currentIndex--;
+        }
     });
 
     $("#next_button").click(function () {
         drawNextStep(steps, currentIndex);
-        currentIndex++;
+        if (currentIndex < steps.length) {
+            currentIndex++;
+        }
     });
 
 });
