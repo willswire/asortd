@@ -1,105 +1,122 @@
 @font-face {
-    font-family: VanguardDemiBold;
-    src: url(Vanguard-CF-Demi-Bold.otf);
+	font-family: VanguardDemiBold;
+	src: url(Vanguard-CF-Demi-Bold.otf);
 }
 
 @font-face {
-    font-family: GreycliffBold;
-    src: url(Greycliff-CF-Bold.otf);
+	font-family: GreycliffBold;
+	src: url(Greycliff-CF-Bold.otf);
 }
 
 @font-face {
-    font-family: Greycliff;
-    src: url(Greycliff-CF-Regular.otf);
+	font-family: Greycliff;
+	src: url(Greycliff-CF-Regular.otf);
 }
 
 body {
-    background: #ffd200 url("yellow-abstract-panel.jpg") no-repeat fixed center;
-    font-size: 75%;
+	background: #ffd200 url("yellow-abstract-panel.jpg") no-repeat fixed center;
+	font-size: 75%;
 }
 
 #controls {
-    position: relative;
-    margin: 2.5% auto;
-    width: 25%;
+	position: fixed;
+	margin: 1% auto;
+	width: 25%;
 }
 
 #sort_button {
-    margin: 0 auto;
-    background-color: #003c71;
-    border: 3px solid white;
-    border-radius: 10px;
-    font-family: GreycliffBold;
-    color: white;
-    font-size: 1.5vw;
-    width: 100%;
-    padding: 2.5%;
-    outline: none;
+	margin: 0 auto;
+	background-color: #003c71;
+	border: 3px solid white;
+	border-radius: 10px;
+	font-family: GreycliffBold;
+	color: white;
+	font-size: 1.5vw;
+	width: 100%;
+	padding: 2.5%;
+	outline: none;
 }
 
 #sort_button:hover {
-    margin: 0 auto;
-    display: inline-block;
-    background-color: #00a0df;
-    border: 3px solid white;
-    border-radius: 10px;
-    font-family: GreycliffBold;
-    color: white;
-    font-size: 1.5vw;
-    outline: none;
+	margin: 0 auto;
+	display: inline-block;
+	background-color: #00a0df;
+	border: 3px solid white;
+	border-radius: 10px;
+	font-family: GreycliffBold;
+	color: white;
+	font-size: 1.5vw;
+	outline: none;
+}
+
+#slider {
+	margin: 0 2.5% 0 0;
+	background-color: #003c71;
+	border: 3px solid white;
+	border-radius: 10px;
+	font-family: GreycliffBold;
+	color: white;
+	font-size: 1.5vw;
+	outline: none;
+	width: 200px;
+}
+
+#sliderRange {
+	width: 95%;
+	margin: 0 auto;
 }
 
 h1 {
-    font-family: VanguardDemiBold;
-    text-align: left;
-    color: #003c71;
-    font-size: 4em !important;
-    margin: 0;
+	font-family: VanguardDemiBold;
+	text-align: left;
+	color: #003c71;
+	font-size: 4em !important;
+	margin: 0;
 }
 
 #main {
-    position: relative;
-    margin: 0 auto;
-    height: 400px;
-    background-color: #003c71;
-    border: 3px solid white;
-    border-radius: 10px;
+	position: relative;
+	margin: 0 auto;
+	height: 400px;
+	background-color: #003c71;
+	border: 3px solid white;
+	border-radius: 10px;
 }
 
 #sorting_container {
-    height: 100%;
-    width: 100%;
-    position: relative;
+	height: 100%;
+	width: 100%;
+	position: relative;
 }
 
 .block {
-    background: #00a0df;
+	background: #00a0df;
 }
 
 #info {
-    border: 3px solid white;
-    border-radius: 10px;
-    background-color: white;
-    padding: 1% 2.5% 1% 2.5%;
+	border: 3px solid white;
+	border-radius: 10px;
+	background-color: white;
+	padding: 1% 2.5% 1% 2.5%;
 }
 
 h2 {
-    font-family: VanguardDemiBold;
-    text-align: left;
-    color: #000000;
-    font-size: 2em;
-    line-height: 0.5em;
+	font-family: VanguardDemiBold;
+	text-align: left;
+	color: #000000;
+	font-size: 2em;
+	line-height: 0.5em;
 }
 
 p {
-    font-family: Greycliff;
-    font-size: 1.3em;
-    line-height: 1.3em;
+	font-family: Greycliff;
+	font-size: 1.3em;
+	line-height: 1.3em;
 }
 
 #header {
-    position: relative;
-    margin: 2% auto;
-    width: 100%;
-    height: 25%;
+	position: relative;
+	margin: 2% auto;
+	width: 100%;
+	height: 25%;
 }
