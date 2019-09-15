@@ -25,7 +25,7 @@
 			<!-- Column that contains the sorting display and controls -->
 			<div class="col">
 				<!-- The main sorting display -->
-				<div id="main">
+				<div id="main" class="shadows">
 					<!-- The container that holds all the items being sorted -->
 					<div id="sorting_container"></div>
 				</div>
@@ -33,20 +33,20 @@
 				<div class="row" id="control_panel">
 					<!-- Column that contains the previous button -->
 					<div class="col" style="padding-left: 0">
-						<button class="controls" id="prev_button"><-</button>
+						<button class="controls shadows" id="prev_button">🡰</button>
 					</div>
 					<!-- Column that contains the start button -->
 					<div class="col">
-						<button class="controls" id="sort_button">START</button>
+						<button class="controls shadows" id="sort_button">START</button>
 					</div>
 					<!-- Column that contains the next button -->
 					<div class="col" style="padding-right: 0">
-						<button class="controls" id="next_button">-></button>
+						<button class="controls shadows" id="next_button">🡲</button>
 					</div>
 				</div>
 				<!-- Row that contains the speed controls-->
 				<div class="row" id="control_panel">
-					<div class="card col" id="slider">
+					<div class="card col shadows" id="slider">
 						<span class="label label-primary" style="text-align:center">SPEED</span>
 						<input type="range" class="custom-range" id="slider_range" min="25" max="175"
 							id="customRange2" />
@@ -55,7 +55,7 @@
 			</div>
 			<!-- Column that contains the info about each sort, and the dropdown to select sorts -->
 			<div class="col">
-				<div id="info">
+				<div id="info" class="shadows">
 					<h2>Bubble Sort</h2>
 					<p>
 						Bubble sort, sometimes referred to as sinking sort,
