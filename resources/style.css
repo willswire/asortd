@@ -15,6 +15,7 @@
 
 body {
 	background: #ffd200 url("yellow-abstract-panel.jpg") no-repeat fixed center;
+    background-size: cover;
 	font-size: 75%;
 }
 
