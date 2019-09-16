@@ -5,7 +5,9 @@ const BLOCK_COLOR = '#00a0df';
 const BLOCK_HIGHLIGHT = '#f5cd5d';
 const NUM_BLOCKS = 20;
 
-const DEFAULT_DELAY_VALUE = 100;
+const DELAY_SLIDER_OFFSET_VALUE = 25;
+const DEFAULT_DELAY_VALUE = 150;
+const MAX_DELAY_VALUE = 300;
 
 // Class: Block
 // Attributes:
@@ -120,7 +122,11 @@ $(function () {
 
     var isReset = false;
 
-    var animation_speed = DEFAULT_DELAY_VALUE;
+    var animation_speed = DEFAULT_DELAY_VALUE + DELAY_SLIDER_OFFSET_VALUE ;
+    $("#slider_range").attr({
+        "min": 0,
+        "max": MAX_DELAY_VALUE,
+    })
     $("#slider_range").val(DEFAULT_DELAY_VALUE);
 
     // Just for testing
@@ -176,7 +182,8 @@ $(function () {
     });
 
     $("#slider_range").change(function () {
-        animation_speed = parseInt($("#slider_range").val());
+        animation_speed = MAX_DELAY_VALUE - parseInt($("#slider_range").val()) + DELAY_SLIDER_OFFSET_VALUE;
+        console.log(animation_speed);
         console.log(animation_speed);
     })
 
