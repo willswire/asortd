@@ -121,7 +121,7 @@ $(function () {
     var isReset = false;
 
     var animation_speed = DEFAULT_DELAY_VALUE;
-    $("#slider_range").val(DEFAULT_DELAY_VALUE);
+    $("#slider_range").val(0);
 
     // Just for testing
     $("#sort_button").click(async function (event) {
@@ -176,7 +176,7 @@ $(function () {
     });
 
     $("#slider_range").change(function () {
-        animation_speed = parseInt($("#slider_range").val());
+        animation_speed = DEFAULT_DELAY_VALUE - parseInt($("#slider_range").val());
         console.log(animation_speed);
     })
 
