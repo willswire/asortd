@@ -77,7 +77,9 @@ function redrawBlocks(currentArr, nextArr, animation_speed) {
 
 
 function bubbleSort(blockArr) {
-    var steps = [[...blockArr]];
+    var steps = [
+        [...blockArr]
+    ];
     var len = blockArr.length;
 
     for (var i = len - 1; i >= 0; i--) {
@@ -107,6 +109,16 @@ function drawPreviousStep(steps, currentStep, animation_speed) {
     }
 }
 
+function toggleDropdown() {
+    $('#dropdownMenuButton').click(function () {
+        if ($('#dd-menu').hasClass("show")) {
+            $('#dd-menu').removeClass("show");
+        } else {
+            $('#dd-menu').addClass("show");
+        }
+    })
+}
+
 // Executed when page is loaded
 $(function () {
     var containerID = '#sorting_container'
@@ -122,12 +134,14 @@ $(function () {
 
     var isReset = false;
 
-    var animation_speed = DEFAULT_DELAY_VALUE + DELAY_SLIDER_OFFSET_VALUE ;
+    var animation_speed = DEFAULT_DELAY_VALUE + DELAY_SLIDER_OFFSET_VALUE;
     $("#slider_range").attr({
         "min": 0,
         "max": MAX_DELAY_VALUE,
     })
     $("#slider_range").val(DEFAULT_DELAY_VALUE);
+
+    toggleDropdown();
 
     // Just for testing
     $("#sort_button").click(async function (event) {
@@ -147,11 +161,10 @@ $(function () {
                 $("#sort_button").html('RESET');
                 isReset = true;
             }
-        }
-        else if (isReset) {
+        } else if (isReset) {
             isReset = false;
             currentIndex = 0;
-            redrawBlocks(steps[steps.length-1], steps[0], animation_speed);
+            redrawBlocks(steps[steps.length - 1], steps[0], animation_speed);
             $("#sort_button").html('START');
         } else {
             $("#sort_button").html('START');
