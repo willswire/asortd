@@ -15,7 +15,7 @@
 
 body {
 	background: #ffd200 url("yellow-abstract-panel.jpg") no-repeat fixed center;
-    background-size: cover;
+	background-size: cover;
 	font-size: 75%;
 }
 
@@ -44,7 +44,7 @@ button {
 }
 
 .shadows {
-	box-shadow: 5px 5px 20px 0px rgba(0,0,0,0.5);
+	box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.5);
 }
 
 #slider {
@@ -80,15 +80,15 @@ h1 {
 	height: 400px;
 	background-color: #003c71;
 	border: 3px solid white;
-    border-radius: 10px;
-    overflow: hidden;
+	border-radius: 10px;
+	overflow: hidden;
 }
 
 #sorting_container {
 	height: 100%;
 	width: 100%;
-    position: relative;
-    margin: auto 0.5% auto 0.5%;
+	position: relative;
+	margin: auto 0.5% auto 0.5%;
 }
 
 .block {
@@ -122,4 +122,12 @@ p {
 	margin: 2% auto;
 	width: 100%;
 	height: 25%;
+}
+
+.dropdown {
+	width: 100%;
+}
+
+.dropdown-menu {
+	width: 100%;
 }
