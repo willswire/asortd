@@ -12,7 +12,7 @@
 	<!-- Style Resources -->
 	<link rel="stylesheet" href="resources/style.css" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
@@ -53,26 +53,41 @@
 						<input type="range" class="custom-range" id="slider_range" id="customRange2" />
 					</div>
 				</div>
+				<div class="row" id="control_panel">
+					<div class="dropdown">
+						<button class="dropdown-toggle controls" type="button" id="dropdownMenuButton"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Select Sorting Algorithm
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dd-menu">
+							<a class="dropdown-item" href="#">Action</a>
+							<a class="dropdown-item" href="#">Another action</a>
+							<a class="dropdown-item" href="#">Something else here</a>
+						</div>
+					</div>
+				</div>
 			</div>
 			<!-- Column that contains the info about each sort, and the dropdown to select sorts -->
 			<div class="col-md">
-				<div id="info" class="shadows">
-					<h2>Bubble Sort</h2>
-					<p>
-						Bubble sort, sometimes referred to as sinking sort,
-						is a simple sorting algorithm that repeatedly steps
-						through the list, compares adjacent elements and
-						swaps them if they are in the wrong order. The pass
-						through the list is repeated until the list is
-						sorted. The algorithm, which is a comparison sort,
-						is named for the way smaller or larger elements
-						"bubble" to the top of the list. Although the
-						algorithm is simple, it is too slow and impractical
-						for most problems even when compared to insertion
-						sort. Bubble sort can be practical if the input is
-						in mostly sorted order with some out-of-order
-						elements nearly in position.
-					</p>
+				<div class="row">
+					<div id="info" class="shadows">
+						<h2>Bubble Sort</h2>
+						<p>
+							Bubble sort, sometimes referred to as sinking sort,
+							is a simple sorting algorithm that repeatedly steps
+							through the list, compares adjacent elements and
+							swaps them if they are in the wrong order. The pass
+							through the list is repeated until the list is
+							sorted. The algorithm, which is a comparison sort,
+							is named for the way smaller or larger elements
+							"bubble" to the top of the list. Although the
+							algorithm is simple, it is too slow and impractical
+							for most problems even when compared to insertion
+							sort. Bubble sort can be practical if the input is
+							in mostly sorted order with some out-of-order
+							elements nearly in position.
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
