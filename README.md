@@ -6,10 +6,6 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://willswire.github.io/asortd/">
-    <img src="icon.svg" alt="Logo" width="80" height="80">
-  </a>
-
   <h3 align="center">ASORTD</h3>
   <p align="center">
     Algorithm Sorting Display
@@ -59,4 +55,3 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [stars-shield]: https://img.shields.io/github/stars/willswire/asortd.svg?style=flat-square
 [issues-shield]: https://img.shields.io/github/issues/willswire/asortd.svg?style=flat-square
 [license-shield]: https://img.shields.io/github/license/willswire/asortd.svg?style=flat-square
-[product-screenshot]: screenshot.png
