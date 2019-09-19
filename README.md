@@ -6,7 +6,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/willswire/asortd">
+  <a href="https://willswire.github.io/asortd/">
     <img src="icon.svg" alt="Logo" width="80" height="80">
   </a>
 
@@ -14,9 +14,9 @@
   <p align="center">
     Algorithm Sorting Display
     <br />
-    <a href="https://willswire.github.io/asortd/">View Online Demo</a>
+    <a href="https://willswire.github.io/asortd/">View Project</a>
     ·
-    <a href="https://github.com/github_username/repo/issues">Request a Feature</a>
+    <a href="https://github.com/willswire/asortd/issues">Request a Feature</a>
   </p>
 </p>
 
