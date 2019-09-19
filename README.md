@@ -6,6 +6,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
+  <a href="https://willswire.github.io/asortd/">
+	    <img src="icon.svg" alt="Logo" width="80" height="80">
+	</a>
   <h3 align="center">ASORTD</h3>
   <p align="center">
     Algorithm Sorting Display
@@ -18,8 +21,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-![asortd Screen Shot][product-screenshot]
 
 Our first assignment in CISC474 was to:
 > For your first project (Module 1), you will explore the Document Object Model (DOM) and how it can be used to create dynamic client side content in a web browser.  You may choose to do whatever you like for this project provided it meets the requirements in this document and is approved in advance.  In past semesters, students have written web based games, interactive applications, graphing systems, and other things.  It is totally up to you and your group.  Be creative and have fun with it.
