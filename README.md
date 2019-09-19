@@ -59,4 +59,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [stars-shield]: https://img.shields.io/github/stars/willswire/asortd.svg?style=flat-square
 [issues-shield]: https://img.shields.io/github/issues/willswire/asortd.svg?style=flat-square
 [license-shield]: https://img.shields.io/github/license/willswire/asortd.svg?style=flat-square
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: screenshot.png
