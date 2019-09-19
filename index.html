@@ -16,10 +16,6 @@
 </head>
 
 <body>
-	<!-- Div that contains the header text -->
-	<div id="header" class="container">
-		<h1>Sorting Algorithms</h1>
-	</div>
 	<!-- Div that contains the main display -->
 	<div class="container">
 		<!-- Row that contains the two column structure -->
@@ -29,6 +25,7 @@
 				<!-- The main sorting display -->
 				<div id="main" class="shadows">
 					<!-- The container that holds all the items being sorted -->
+					<h1>Sorting Algorithms</h1>
 					<div id="sorting_container"></div>
 				</div>
 				<!-- Row that contains the controls, each control is in a column -->
@@ -87,6 +84,23 @@
 							in mostly sorted order with some out-of-order
 							elements nearly in position.
 						</p>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 3%">
+					<div id="info" class="shadows" style="width: 100%">
+						<h2>Pseudo Code</h2>
+						<pre id="exampleCode">
+begin BubbleSort(list)
+
+	for all elements of list
+		if list[i] > list[i+1]
+			swap(list[i], list[i+1])
+		end if
+	end for
+	
+	return list
+	
+end BubbleSort</pre>
 					</div>
 				</div>
 			</div>
