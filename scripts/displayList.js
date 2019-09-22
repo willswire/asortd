@@ -37,6 +37,7 @@ function createBlockHTML(block, idx) {
         'left:' + (block.width * idx) + '%;' +
         'width:' + (block.width - 1) + '%;' +
         'height:' + (block.height) + '%;">' +
+        '<p align="center" style="font-size:17px; color:white">' + block.height + '</p>'
         '</div>';
     return block;
 }
@@ -74,7 +75,34 @@ function redrawBlocks(currentArr, nextArr, animation_speed) {
     });
 }
 
+function swap(blockArr, i, j){
+    var tmp = blockArr[i];
+    blockArr[i] = blockArr[j];
+    blockArr[j] = tmp;
+}
 
+function selectionSort(blockArr){
+    var steps = [
+        [...blockArr]
+    ];
+    var len = blockArr.length;
+
+    for(var i = 0; i < len; i++) {
+        var min = i;
+        for(var j = i + 1; j < len; j++) {
+          if(blockArr[j].height < blockArr[min].height) {
+            min = j;
+          }
+        }
+        if(i !== min) {
+          swap(blockArr, i, min);
+          steps.push([...blockArr]);
+        }
+      }
+
+    console.log(steps);
+    return steps;
+}
 
 function bubbleSort(blockArr) {
     var steps = [
@@ -85,9 +113,7 @@ function bubbleSort(blockArr) {
     for (var i = len - 1; i >= 0; i--) {
         for (var j = 1; j <= i; j++) {
             if (blockArr[j - 1].height > blockArr[j].height) {
-                var temp = blockArr[j - 1];
-                blockArr[j - 1] = blockArr[j];
-                blockArr[j] = temp;
+                swap(blockArr, j-1, j);
                 steps.push([...blockArr]);
             }
         }
@@ -127,7 +153,7 @@ $(function () {
 
     drawBlocks(containerID, blocks);
 
-    var steps = bubbleSort(blocks);
+    var steps = insertionSort(blocks);
 
     var currentIndex = 0;
     var paused = true;
