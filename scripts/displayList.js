@@ -150,6 +150,34 @@ function quickSort(blockArr, left, right, steps) {
     return blockArr;
 }
 
+function shellSort(blockArr) {
+    var steps = [
+        [...blockArr]
+    ];
+    var increment = blockArr.length / 2;
+    while (increment > 0) {
+        for (i = increment; i < blockArr.length; i++) {
+            var j = i;
+            var temp = blockArr[i];
+    
+            while (j >= increment && blockArr[j-increment].height > temp.height) {
+                blockArr[j] = blockArr[j-increment];
+                j = j - increment;
+            }
+    
+            blockArr[j] = temp;
+            steps.push([...blockArr])
+        }
+    
+        if (increment == 2) {
+            increment = 1;
+        } else {
+            increment = parseInt(increment*5 / 11);
+        }
+    }
+  return steps;
+}
+
 function bubbleSort(blockArr) {
     var steps = [
         [...blockArr]
@@ -199,7 +227,7 @@ $(function () {
 
     drawBlocks(containerID, blocks);
 
-    var steps = quickSortHelper(blocks);
+    var steps = shellSort(blocks);
 
     var currentIndex = 0;
     var paused = true;
