@@ -109,7 +109,22 @@ function drawPreviousStep(steps, currentStep, animation_speed) {
     }
 }
 
-function toggleDropdown() {
+// Executed when page is loaded
+$(function () {
+    //var choice = toggleDropdown();
+    var containerID = '#sorting_container'
+    var blocks = randBlockArray(NUM_BLOCKS, MAX_BLOCK_HEIGHT_PERCENT);
+    $(containerID).html('');
+
+    drawBlocks(containerID, blocks);
+
+    var steps = bubbleSort(blocks);
+
+    var currentIndex = 0;
+    var paused = true;
+
+    var isReset = false;
+
     var choice = null;
 
     $('#dropdownMenuButton').click(function () {
@@ -124,24 +139,6 @@ function toggleDropdown() {
             })
         }
     })
-    return choice;
-}
-
-// Executed when page is loaded
-$(function () {
-    var choice = toggleDropdown();
-    var containerID = '#sorting_container'
-    var blocks = randBlockArray(NUM_BLOCKS, MAX_BLOCK_HEIGHT_PERCENT);
-    $(containerID).html('');
-
-    drawBlocks(containerID, blocks);
-
-    var steps = bubbleSort(blocks);
-
-    var currentIndex = 0;
-    var paused = true;
-
-    var isReset = false;
 
     var animation_speed = DEFAULT_DELAY_VALUE + DELAY_SLIDER_OFFSET_VALUE;
     $("#slider_range").attr({
