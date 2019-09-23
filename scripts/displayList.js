@@ -104,6 +104,52 @@ function selectionSort(blockArr){
     return steps;
 }
 
+function partition(blockArr, left, right, steps) {
+    var pivot = blockArr[Math.floor((right + left) / 2)].height, //middle element
+        i = left, //left pointer
+        j = right; //right pointer
+    while (i <= j) {
+        while (blockArr[i].height < pivot) {
+            i++;
+        }
+        while (blockArr[j].height > pivot) {
+            j--;
+        }
+        if (i <= j) {
+            swap(blockArr, i, j); 
+            steps.push([...blockArr]);
+            i++;
+            j--;
+        }
+    }
+    return i;
+}
+
+function quickSortHelper(blockArr){
+    var steps = [
+        [...blockArr]
+    ];
+
+    quickSort(blockArr, 0, blockArr.length-1, steps);
+
+    return steps;
+}
+
+function quickSort(blockArr, left, right, steps) {
+    var index;
+    if (blockArr.length > 1) {
+        index = partition(blockArr, left, right, steps); //index returned from partition
+        if (left < index - 1) { //more elements on the left side of the pivot
+            quickSort(blockArr, left, index - 1, steps);
+        }
+        if (index < right) { //more elements on the right side of the pivot
+            quickSort(blockArr, index, right, steps);
+        }
+    }
+
+    return blockArr;
+}
+
 function bubbleSort(blockArr) {
     var steps = [
         [...blockArr]
@@ -153,7 +199,7 @@ $(function () {
 
     drawBlocks(containerID, blocks);
 
-    var steps = insertionSort(blocks);
+    var steps = quickSortHelper(blocks);
 
     var currentIndex = 0;
     var paused = true;
