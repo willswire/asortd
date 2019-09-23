@@ -54,35 +54,32 @@ function createBlockHTML(block, idx) {
 }
 
 function drawBlocks(containerID, blockArr) {
-	blockArr.forEach(function(block, idx) {
+	blockArr.forEach(function (block, idx) {
 		$(containerID).append(createBlockHTML(block, idx));
 	});
 }
 
 function redrawBlocks(currentArr, nextArr, animation_speed) {
-	nextArr.forEach(function(block, idx) {
+	nextArr.forEach(function (block, idx) {
 		if (block != currentArr[idx]) {
-			$("#block" + block.id).animate(
-				{
-					left: block.width * idx + "%"
+			$("#block" + block.id).animate({
+				left: block.width * idx + "%"
+			}, {
+				duration: animation_speed,
+				easing: "linear",
+				start: function () {
+					$("#block" + block.id).css({
+						backgroundColor: BLOCK_HIGHLIGHT,
+						"z-index": 9999
+					});
 				},
-				{
-					duration: animation_speed,
-					easing: "linear",
-					start: function() {
-						$("#block" + block.id).css({
-							backgroundColor: BLOCK_HIGHLIGHT,
-							"z-index": 9999
-						});
-					},
-					done: function() {
-						$("#block" + block.id).css({
-							backgroundColor: BLOCK_COLOR,
-							"z-index": 1
-						});
-					}
+				done: function () {
+					$("#block" + block.id).css({
+						backgroundColor: BLOCK_COLOR,
+						"z-index": 1
+					});
 				}
-			);
+			});
 		} else {
 			$("#block" + block.id).delay(animation_speed);
 		}
@@ -96,7 +93,9 @@ function swap(blockArr, i, j) {
 }
 
 function selectionSort(blockArr) {
-	var steps = [[...blockArr]];
+	var steps = [
+		[...blockArr]
+	];
 	var len = blockArr.length;
 
 	for (var i = 0; i < len; i++) {
@@ -138,7 +137,9 @@ function partition(blockArr, left, right, steps) {
 }
 
 function quickSortHelper(blockArr) {
-	var steps = [[...blockArr]];
+	var steps = [
+		[...blockArr]
+	];
 
 	quickSort(blockArr, 0, blockArr.length - 1, steps);
 
@@ -163,7 +164,9 @@ function quickSort(blockArr, left, right, steps) {
 }
 
 function shellSort(blockArr) {
-	var steps = [[...blockArr]];
+	var steps = [
+		[...blockArr]
+	];
 	var increment = blockArr.length / 2;
 	while (increment > 0) {
 		for (i = increment; i < blockArr.length; i++) {
@@ -192,7 +195,9 @@ function shellSort(blockArr) {
 }
 
 function bubbleSort(blockArr) {
-	var steps = [[...blockArr]];
+	var steps = [
+		[...blockArr]
+	];
 	var len = blockArr.length;
 
 	for (var i = len - 1; i >= 0; i--) {
@@ -228,13 +233,42 @@ function drawPreviousStep(steps, currentStep, animation_speed) {
 	}
 }
 
+function selectedInfo(choice) {
+	switch (choice) {
+		case "Bubble Sort":
+			$(".info").hide();
+			$("#bubble-info").show();
+			$("#bubble-psuedo").show();
+			break;
+		case "Shell Sort":
+			$(".info").hide();
+			$("#shell-info").show();
+			$("#shell-psuedo").show();
+			break;
+		case "Quick Sort":
+			$(".info").hide();
+			$("#quick-info").show();
+			$("#quick-psuedo").show();
+			break;
+		case "Selection Sort":
+			$(".info").hide();
+			$("#selection-info").show();
+			$("#selection-psuedo").show();
+			break;
+		default:
+			$(".info").hide();
+			$("#asortd-info").show();
+	}
+}
+
 function selectedAlgo(choice, blocks) {
 	var steps;
 
 	switch (choice) {
 		case "Bubble Sort":
 			steps = bubbleSort(blocks);
-			//Change info section
+			$("#bubble-info").show();
+			$("#asortd-info").hide();
 			//Change pseudocode section
 			break;
 		case "Shell Sort":
@@ -254,12 +288,13 @@ function selectedAlgo(choice, blocks) {
 			break;
 		default:
 			alert("Select a Sorting Algorithm!");
+
 	}
 	return steps;
 }
 
 // Executed when page is loaded
-$(function() {
+$(function () {
 	var containerID = "#sorting_container";
 	var blocks = randBlockArray(NUM_BLOCKS, MAX_BLOCK_HEIGHT);
 	$(containerID).html("");
@@ -275,15 +310,16 @@ $(function() {
 
 	var choice = null;
 
-	$("#dropdownMenuButton").click(function() {
+	$("#dropdownMenuButton").click(function () {
 		if ($("#dd-menu").hasClass("show")) {
 			$("#dd-menu").removeClass("show");
 		} else {
 			$("#dd-menu").addClass("show");
-			$(".dropdown-item").click(function() {
+			$(".dropdown-item").click(function () {
 				$("#dropdownMenuButton").text($(this).text());
 				$("#dd-menu").removeClass("show");
 				choice = $(this).text();
+				selectedInfo(choice);
 			});
 		}
 	});
@@ -296,7 +332,7 @@ $(function() {
 	$("#slider_range").val(DEFAULT_DELAY_VALUE);
 
 	// Just for testing
-	$("#sort_button").click(async function(event) {
+	$("#sort_button").click(async function (event) {
 		steps = selectedAlgo(choice, blocks);
 		if (paused && !isReset && steps != null) {
 			$("#sort_button").html("PAUSE");
@@ -325,7 +361,7 @@ $(function() {
 		}
 	});
 
-	$("#prev_button").click(function() {
+	$("#prev_button").click(function () {
 		drawPreviousStep(steps, currentIndex, animation_speed);
 		if (currentIndex > 0) {
 			currentIndex--;
@@ -336,7 +372,7 @@ $(function() {
 		}
 	});
 
-	$("#next_button").click(function() {
+	$("#next_button").click(function () {
 		drawNextStep(steps, currentIndex, animation_speed);
 		if (currentIndex < steps.length) {
 			currentIndex++;
@@ -347,7 +383,7 @@ $(function() {
 		}
 	});
 
-	$("#slider_range").change(function() {
+	$("#slider_range").change(function () {
 		animation_speed =
 			MAX_DELAY_VALUE -
 			parseInt($("#slider_range").val()) +

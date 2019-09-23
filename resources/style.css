@@ -99,6 +99,7 @@ h1 {
 }
 
 .info {
+	display: none;
 	border: 3px solid white;
 	border-radius: 10px;
 	background-color: white;
