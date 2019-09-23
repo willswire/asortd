@@ -1,6 +1,6 @@
 const BLOCK_WIDTH = 10;
 const BLOCK_YPOS_OFFSET = 15;
-const MAX_BLOCK_HEIGHT_PERCENT = 75;
+const MAX_BLOCK_HEIGHT = 10;
 const BLOCK_COLOR = '#00a0df';
 const BLOCK_HIGHLIGHT = '#f5cd5d';
 const NUM_BLOCKS = 20;
@@ -36,7 +36,7 @@ function createBlockHTML(block, idx) {
         'bottom:0px;' +
         'left:' + (block.width * idx) + '%;' +
         'width:' + (block.width - 1) + '%;' +
-        'height:' + (block.height) + '%;">' +
+        'height:' + (block.height)*10 + '%;">' +
         '</div>';
     return block;
 }
@@ -122,7 +122,7 @@ function toggleDropdown() {
 // Executed when page is loaded
 $(function () {
     var containerID = '#sorting_container'
-    var blocks = randBlockArray(NUM_BLOCKS, MAX_BLOCK_HEIGHT_PERCENT);
+    var blocks = randBlockArray(NUM_BLOCKS, MAX_BLOCK_HEIGHT);
     $(containerID).html('');
 
     drawBlocks(containerID, blocks);
