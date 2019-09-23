@@ -110,17 +110,26 @@ function drawPreviousStep(steps, currentStep, animation_speed) {
 }
 
 function toggleDropdown() {
+    var choice = null;
+
     $('#dropdownMenuButton').click(function () {
         if ($('#dd-menu').hasClass("show")) {
             $('#dd-menu').removeClass("show");
         } else {
             $('#dd-menu').addClass("show");
+            $('.dropdown-item').click(function(){
+                $('#dropdownMenuButton').text($(this).text());
+                $('#dd-menu').removeClass("show");
+                choice = $(this).text();
+            })
         }
     })
+    return choice;
 }
 
 // Executed when page is loaded
 $(function () {
+    var choice = toggleDropdown();
     var containerID = '#sorting_container'
     var blocks = randBlockArray(NUM_BLOCKS, MAX_BLOCK_HEIGHT_PERCENT);
     $(containerID).html('');
@@ -140,8 +149,6 @@ $(function () {
         "max": MAX_DELAY_VALUE,
     })
     $("#slider_range").val(DEFAULT_DELAY_VALUE);
-
-    toggleDropdown();
 
     // Just for testing
     $("#sort_button").click(async function (event) {
