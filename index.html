@@ -1,132 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Sorting Algorithms</title>
-		<!-- JavaScript needed for this webpage -->
-		<script
-			type="text/javascript"
-			src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-		></script>
-		<script type="text/javascript" src="scripts/displayList.js"></script>
-		<script src="https://kit.fontawesome.com/9c3b18b2e3.js"></script>
-		<!-- Style Resources -->
-		<link rel="stylesheet" href="resources/style.css" />
-		<link
-			rel="stylesheet"
-			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-			crossorigin="anonymous"
-		/>
-	</head>
 
-	<body>
-		<!-- Div that contains the main display -->
-		<div class="container">
-			<!-- Row that contains the two column structure -->
-			<div class="row">
-				<!-- Column that contains the sorting display and controls -->
-				<div class="col-md">
-					<!-- The main sorting display -->
-					<div id="main" class="shadows">
-						<!-- The container that holds all the items being sorted -->
-						<h1>Sorting Algorithms</h1>
-						<div id="sorting_container"></div>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Sorting Algorithms</title>
+	<!-- JavaScript needed for this webpage -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="scripts/displayList.js"></script>
+	<script src="https://kit.fontawesome.com/9c3b18b2e3.js"></script>
+	<!-- Style Resources -->
+	<link rel="stylesheet" href="resources/style.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+</head>
+
+<body>
+	<!-- Div that contains the main display -->
+	<div class="container">
+		<!-- Row that contains the two column structure -->
+		<div class="row">
+			<!-- Column that contains the sorting display and controls -->
+			<div class="col-md">
+				<!-- The main sorting display -->
+				<div id="main" class="shadows">
+					<!-- The container that holds all the items being sorted -->
+					<h1>Sorting Algorithms</h1>
+					<div id="sorting_container"></div>
+				</div>
+				<!-- Row that contains the controls, each control is in a column -->
+				<div class="row" id="control_panel">
+					<!-- Column that contains the previous button -->
+					<div class="col" style="padding-left: 0">
+						<button class="controls shadows" id="prev_button">
+							<i class="fas fa-backward"></i>
+						</button>
 					</div>
-					<!-- Row that contains the controls, each control is in a column -->
-					<div class="row" id="control_panel">
-						<!-- Column that contains the previous button -->
-						<div class="col" style="padding-left: 0">
-							<button class="controls shadows" id="prev_button">
-								<i class="fas fa-backward"></i>
-							</button>
-						</div>
-						<!-- Column that contains the start button -->
-						<div class="col">
-							<button class="controls shadows" id="sort_button">
-								START
-							</button>
-						</div>
-						<!-- Column that contains the next button -->
-						<div class="col" style="padding-right: 0">
-							<button class="controls shadows" id="next_button">
-								<i class="fas fa-forward"></i>
-							</button>
-						</div>
+					<!-- Column that contains the start button -->
+					<div class="col">
+						<button class="controls shadows" id="sort_button">
+							START
+						</button>
 					</div>
-					<!-- Row that contains the speed controls-->
-					<div class="row" id="control_panel">
-						<div class="card col shadows" id="slider">
-							<span
-								class="label label-primary"
-								style="text-align:center"
-								>SPEED</span
-							>
-							<input
-								type="range"
-								class="custom-range"
-								id="slider_range"
-								id="customRange2"
-							/>
-						</div>
+					<!-- Column that contains the next button -->
+					<div class="col" style="padding-right: 0">
+						<button class="controls shadows" id="next_button">
+							<i class="fas fa-forward"></i>
+						</button>
 					</div>
-					<div class="row" id="control_panel">
-						<div class="dropdown">
-							<button
-								class="dropdown-toggle controls"
-								type="button"
-								id="dropdownMenuButton"
-								data-toggle="dropdown"
-								aria-haspopup="true"
-								aria-expanded="false"
-							>
-								Select Sorting Algorithm
-							</button>
-							<div
-								class="dropdown-menu"
-								aria-labelledby="dropdownMenuButton"
-								id="dd-menu"
-							>
-								<a class="dropdown-item" href="#"
-									>Bubble Sort</a
-								>
-								<a class="dropdown-item" href="#">Shell Sort</a>
-								<a class="dropdown-item" href="#">Quick Sort</a>
-								<a class="dropdown-item" href="#"
-									>Selection Sort</a
-								>
-							</div>
+				</div>
+				<!-- Row that contains the speed controls-->
+				<div class="row" id="control_panel">
+					<div class="card col shadows" id="slider">
+						<span class="label label-primary" style="text-align:center">SPEED</span>
+						<input type="range" class="custom-range" id="slider_range" id="customRange2" />
+					</div>
+				</div>
+				<div class="row" id="control_panel">
+					<div class="dropdown">
+						<button class="dropdown-toggle controls" type="button" id="dropdownMenuButton"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Select Sorting Algorithm
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dd-menu">
+							<a class="dropdown-item" href="#">Bubble Sort</a>
+							<a class="dropdown-item" href="#">Shell Sort</a>
+							<a class="dropdown-item" href="#">Quick Sort</a>
+							<a class="dropdown-item" href="#">Selection Sort</a>
 						</div>
 					</div>
 				</div>
-				<!-- Column that contains the info about each sort, and the dropdown to select sorts -->
-				<div class="col-md">
-					<div class="row">
-						<div id="info" class="shadows">
-							<h2>Bubble Sort</h2>
-							<p>
-								Bubble sort, sometimes referred to as sinking
-								sort, is a simple sorting algorithm that
-								repeatedly steps through the list, compares
-								adjacent elements and swaps them if they are in
-								the wrong order. The pass through the list is
-								repeated until the list is sorted. The
-								algorithm, which is a comparison sort, is named
-								for the way smaller or larger elements "bubble"
-								to the top of the list. Although the algorithm
-								is simple, it is too slow and impractical for
-								most problems even when compared to insertion
-								sort. Bubble sort can be practical if the input
-								is in mostly sorted order with some out-of-order
-								elements nearly in position.
-							</p>
-						</div>
+			</div>
+			<!-- Column that contains the info about each sort, and the dropdown to select sorts -->
+			<div class="col-md">
+				<div class="row" style="margin: 0;">
+					<div id="bubble-info" class="shadows info">
+						<h2>Bubble Sort</h2>
+						<p>
+							Bubble sort, sometimes referred to as sinking
+							sort, is a simple sorting algorithm that
+							repeatedly steps through the list, compares
+							adjacent elements and swaps them if they are in
+							the wrong order. The pass through the list is
+							repeated until the list is sorted. The
+							algorithm, which is a comparison sort, is named
+							for the way smaller or larger elements "bubble"
+							to the top of the list. Although the algorithm
+							is simple, it is too slow and impractical for
+							most problems even when compared to insertion
+							sort. Bubble sort can be practical if the input
+							is in mostly sorted order with some out-of-order
+							elements nearly in position.
+						</p>
 					</div>
-					<div class="row" style="margin-top: 3%">
-						<div id="info" class="shadows" style="width: 100%">
-							<h2>Pseudo Code</h2>
-							<pre id="exampleCode">
+				</div>
+				<div class="row" style="margin: 3% 0 3% 0;">
+					<div id="bubble-psuedo" class="shadows info" style="width: 100%">
+						<h2>Pseudo Code</h2>
+						<pre id="exampleCode">
 begin BubbleSort(list)
 
 	for all elements of list
@@ -137,12 +108,12 @@ begin BubbleSort(list)
 	
 	return list
 	
-end BubbleSort</pre
-							>
-						</div>
+end BubbleSort</pre>
 					</div>
 				</div>
 			</div>
 		</div>
-	</body>
+	</div>
+</body>
+
 </html>
