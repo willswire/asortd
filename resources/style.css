@@ -143,3 +143,10 @@ p {
 .dropdown-menu {
 	width: 100%;
 }
+
+ul {
+	font-family: Greycliff;
+	font-size: 1.3em;
+	line-height: 1.3em;
+	color: #333;
+}

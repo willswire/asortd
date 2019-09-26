@@ -319,7 +319,19 @@ $(function () {
 				$("#dropdownMenuButton").text($(this).text());
 				$("#dd-menu").removeClass("show");
 				choice = $(this).text();
+
+				isReset = false;
+				paused = true;
 				selectedInfo(choice);
+				var oldSteps = steps ? steps[currentIndex] : null;
+				currentIndex = 0;
+				steps = selectedAlgo(choice, [...blocks]);
+
+				$("#sort_button").html("START");
+				if (oldSteps) {
+					redrawBlocks(oldSteps, steps[0], animation_speed);
+				}
+
 			});
 		}
 	});
@@ -333,8 +345,9 @@ $(function () {
 
 	// Just for testing
 	$("#sort_button").click(async function (event) {
-		steps = selectedAlgo(choice, blocks);
 		if (paused && !isReset && steps != null) {
+			console.log("HIT HERE");
+			console.log(currentIndex, steps.length);
 			$("#sort_button").html("PAUSE");
 			paused = false;
 			for (var i = currentIndex; i < steps.length; i++) {
