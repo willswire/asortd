@@ -103,14 +103,17 @@
 					<div id="shell-info" class="shadows info">
 						<h2>Shell Sort</h2>
 						<p>
-							Shellsort, also known as Shell sort or Shell's method, is an in-place comparison sort. It
-							can be seen as either a generalization of sorting by exchange (bubble sort) or sorting by
-							insertion (insertion sort). The method starts by sorting pairs of elements far apart from
-							each other, then progressively reducing the gap between elements to be compared. Starting
-							with far apart elements, it can move some out-of-place elements into position faster than a
-							simple nearest neighbor exchange. Donald Shell published the first version of this sort in
-							1959. The running time of Shellsort is heavily dependent on the gap sequence it uses.
-							For many practical variants, determining their time complexity remains an open problem.
+							Shellsort, also known as Shell sort or Shell's method,
+							is an in-place comparison sort. It can be seen as either a
+							generalization of bubble sort or insertion sort. The method
+							starts by sorting pairs of elements far apart from each other,
+							then progressively reducing the gap between elements to be compared.
+							Starting with far apart elements, it can move some out-of-place elements
+							into position faster than a simple nearest neighbor exchange.
+							<ul>
+								<li><strong>Worst Case:</strong> O(n<sup>2</sup>)</li>
+								<li><strong>Best Case:</strong> O(n log(n))</li>
+							</ul>
 						</p>
 					</div>
 					<div id="quick-info" class="shadows info">
@@ -169,18 +172,19 @@ end BubbleSort</pre>
 					<div id="shell-psuedo" class="shadows info" style="width: 100%">
 						<h2>Pseudo Code</h2>
 						<pre id="exampleCode">
-foreach (gap in gaps)
-{
-for (i = gap; i < n; i += 1)
-{
-	temp = a[i]
-	for (j = i; j >= gap and a[j - gap] > temp; j -= gap)
-	{
-		a[j] = a[j - gap]
-	}
-	a[j] = temp
-}
-}</pre>
+calculate gap size ($gap)
+while $gap is greater than 0
+
+	for each element of the list, that is $gap apart
+		Extract the current item
+		Locate the position to insert
+		Insert the item to the position
+	end for
+
+	calculate gap size ($gap)
+
+end while
+</pre>
 					</div>
 					<div id="quick-psuedo" class="shadows info" style="width: 100%">
 						<h2>Pseudo Code</h2>
