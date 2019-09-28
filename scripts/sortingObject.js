@@ -1,3 +1,15 @@
+// Sorting algorithm options are of the form: 
+/*
+DESCRIPTOR: {
+  name: The name of the sort which will be displayed as a title
+  description: a description of how the sort functions
+  worstCase: worst case runtime in big O notation
+  bestCase: best case runtime in Ω notation
+  pseudoCode: pseudocode entered to show how the function works
+  sort: the name of a sorting function, defined in sortingFunctions.js
+}
+*/
+
 const SORTING_ALGORITHMS = {
   BUBBLE: {
     name: "Bubble Sort",
@@ -5,24 +17,7 @@ const SORTING_ALGORITHMS = {
     worstCase: "O(n²)",
     bestCase: "Ω(n)",
     pseudoCode: "foreach (gap in gaps)\n{\nfor (i = gap; i < n; i += 1)\n{\ntemp = a[i]\nfor (j = i; j >= gap and a[j - gap] > temp; j -= gap)\n{\na[j] = a[j - gap]\n}\na[j] = temp\n}\n}\n",
-    sort: (blockArr) => {
-      var steps = [
-        [...blockArr]
-      ];
-      var len = blockArr.length;
-
-      for (var i = len - 1; i >= 0; i--) {
-        for (var j = 1; j <= i; j++) {
-          if (blockArr[j - 1].height > blockArr[j].height) {
-            swap(blockArr, j - 1, j);
-            steps.push([...blockArr]);
-          }
-        }
-      }
-
-      console.log(steps);
-      return steps;
-    }
+    sort: bubbleSort,
   },
   SHELL: {
     name: "Shell Sort",
@@ -30,36 +25,7 @@ const SORTING_ALGORITHMS = {
     worstCase: "O(n²)",
     bestCase: "Ω(n log(n))",
     pseudoCode: "calculate gap size ($gap)\nwhile $gap is greater than 0\nfor each element of the list, that is $gap apart\nExtract the current item\nLocate the position to insert\nInsert the item to the position\nend for\ncalculate gap size ($gap)\nend while\n",
-    sort: (blockArr) => {
-      var steps = [
-        [...blockArr]
-      ];
-      var increment = blockArr.length / 2;
-      while (increment > 0) {
-        for (i = increment; i < blockArr.length; i++) {
-          var j = i;
-          var temp = blockArr[i];
-
-          while (
-            j >= increment &&
-            blockArr[j - increment].height > temp.height
-          ) {
-            blockArr[j] = blockArr[j - increment];
-            j = j - increment;
-          }
-
-          blockArr[j] = temp;
-          steps.push([...blockArr]);
-        }
-
-        if (increment == 2) {
-          increment = 1;
-        } else {
-          increment = parseInt((increment * 5) / 11);
-        }
-      }
-      return steps;
-    }
+    sort: shellSort
   },
   QUICK: {
     name: "Quick Sort",
@@ -67,13 +33,7 @@ const SORTING_ALGORITHMS = {
     worstCase: "O(n²)",
     bestCase: "Ω(n log(n))",
     pseudoCode: "quickSort(left, right)\nif right-left <= 0\nreturn\nelse\npivot = A[right]\npartition = partitionFunc(left, right, pivot)\nquickSort(left,partition-1)\nquickSort(partition+1,right)\nend if\nend quickSort\n",
-    sort: (blockArr) => {
-      var steps = [
-        [...blockArr]
-      ];
-      quickSort(blockArr, 0, blockArr.length - 1, steps);    
-      return steps;
-    }
+    sort: quickSortHelper
   },
   SELECTION: {
     name: "Selection Sort",
@@ -81,73 +41,7 @@ const SORTING_ALGORITHMS = {
     worstCase: "O(n²)",
     bestCase: "Ω(n²)",
     pseudoCode: "selectionSort(array, size)\nrepeat (size - 1) times\nset the first unsorted element as the minimum\nfor each of the unsorted elements\nif element < currentMinimum\nset element as new minimum\nswap minimum with first unsorted position\nend selectionSort\n",
-    sort: (blockArr) => {
-      var steps = [
-        [...blockArr]
-      ];
-      var len = blockArr.length;
-    
-      for (var i = 0; i < len; i++) {
-        var min = i;
-        for (var j = i + 1; j < len; j++) {
-          if (blockArr[j].height < blockArr[min].height) {
-            min = j;
-          }
-        }
-        if (i !== min) {
-          swap(blockArr, i, min);
-          steps.push([...blockArr]);
-        }
-      }
-    
-      console.log(steps);
-      return steps;
-    }
+    sort: selectionSort
   }
 };
 
-function quickSort(blockArr, left, right, steps) {
-	var index;
-	if (blockArr.length > 1) {
-		index = partition(blockArr, left, right, steps); //index returned from partition
-		if (left < index - 1) {
-			//more elements on the left side of the pivot
-			quickSort(blockArr, left, index - 1, steps);
-		}
-		if (index < right) {
-			//more elements on the right side of the pivot
-			quickSort(blockArr, index, right, steps);
-		}
-	}
-
-	return blockArr;
-}
-
-
-function partition(blockArr, left, right, steps) {
-	var pivot = blockArr[Math.floor((right + left) / 2)].height, //middle element
-		i = left, //left pointer
-		j = right; //right pointer
-	while (i <= j) {
-		while (blockArr[i].height < pivot) {
-			i++;
-		}
-		while (blockArr[j].height > pivot) {
-			j--;
-		}
-		if (i <= j) {
-			swap(blockArr, i, j);
-			steps.push([...blockArr]);
-			i++;
-			j--;
-		}
-	}
-	return i;
-}
-
-
-function swap(blockArr, i, j) {
-	var tmp = blockArr[i];
-	blockArr[i] = blockArr[j];
-	blockArr[j] = tmp;
-}

@@ -107,7 +107,6 @@ function drawPreviousStep(steps, currentStep, animation_speed) {
 }
 
 function selectedInfo(choice) {
-	console.log(choice);
 	if(choice){
 		$("#asortd-info").hide();
 		$('#sort-info').show();
@@ -200,8 +199,6 @@ $(function () {
 	// Just for testing
 	$("#sort_button").click(async function (event) {
 		if (paused && !isReset && steps != null) {
-			console.log("HIT HERE");
-			console.log(currentIndex, steps.length);
 			$("#sort_button").html("PAUSE");
 			paused = false;
 			for (var i = currentIndex; i < steps.length; i++) {
@@ -255,8 +252,6 @@ $(function () {
 			MAX_DELAY_VALUE -
 			parseInt($("#slider_range").val()) +
 			DELAY_SLIDER_OFFSET_VALUE;
-		console.log(animation_speed);
-		console.log(animation_speed);
 	});
 });
 
