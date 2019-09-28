@@ -143,3 +143,18 @@ p {
 .dropdown-menu {
 	width: 100%;
 }
+
+.center {
+  position: absolute;
+  margin:auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100px;
+}
+
+#even_nodes {
+	margin-bottom: 10%;
+}
+
