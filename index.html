@@ -8,6 +8,8 @@
 	<!-- JavaScript needed for this webpage -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script type="text/javascript" src="scripts/displayList.js"></script>
+	<script type="text/javascript" src="scripts/sortingFunctions.js"></script>
+	<script type="text/javascript" src="scripts/sortingObject.js"></script>
 	<script src="https://kit.fontawesome.com/9c3b18b2e3.js"></script>
 	<!-- Style Resources -->
 	<link rel="stylesheet" href="resources/style.css" />
@@ -58,15 +60,15 @@
 				</div>
 				<div class="row" id="control_panel">
 					<div class="dropdown">
-						<button class="dropdown-toggle controls" type="button" id="dropdownMenuButton"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<button class="dropdown-toggle controls" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
 							Select Sorting Algorithm
 						</button>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dd-menu">
-							<a class="dropdown-item" href="#">Bubble Sort</a>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenu" id="dd-menu">
+							<!-- <a class="dropdown-item" href="#">Bubble Sort</a>
 							<a class="dropdown-item" href="#">Shell Sort</a>
 							<a class="dropdown-item" href="#">Quick Sort</a>
-							<a class="dropdown-item" href="#">Selection Sort</a>
+							<a class="dropdown-item" href="#">Selection Sort</a> -->
 						</div>
 					</div>
 				</div>
@@ -82,125 +84,15 @@
 							are most often taught in the computer science curriculum.
 						</p>
 					</div>
-					<div id="bubble-info" class="shadows info">
-						<h2>Bubble Sort</h2>
-						<p>
-							Bubble sort, sometimes referred to as sinking
-							sort, is a simple sorting algorithm that
-							repeatedly steps through the list, compares
-							adjacent elements and swaps them if they are in
-							the wrong order. The pass through the list is
-							repeated until the list is sorted. The
-							algorithm, which is a comparison sort, is named
-							for the way smaller or larger elements "bubble"
-							to the top of the list.
-							<ul>
-								<li><strong>Worst Case:</strong> O(n<sup>2</sup>)</li>
-								<li><strong>Best Case:</strong> O(n)</li>
-							</ul>
-						</p>
+					<div id="sort-info" class="shadows info">
+						<h2 id="sort-info-header"></h2>
+						<p id="sort-info-description"></p>
 					</div>
-					<div id="shell-info" class="shadows info">
-						<h2>Shell Sort</h2>
-						<p>
-							Shellsort, also known as Shell sort or Shell's method,
-							is an in-place comparison sort. It can be seen as either a
-							generalization of bubble sort or insertion sort. The method
-							starts by sorting pairs of elements far apart from each other,
-							then progressively reducing the gap between elements to be compared.
-							Starting with far apart elements, it can move some out-of-place elements
-							into position faster than a simple nearest neighbor exchange.
-							<ul>
-								<li><strong>Worst Case:</strong> O(n<sup>2</sup>)</li>
-								<li><strong>Best Case:</strong> O(n log(n))</li>
-							</ul>
-						</p>
-					</div>
-					<div id="quick-info" class="shadows info">
-						<h2>Quick Sort</h2>
-						<p>
-							Quicksort is a comparison sort. Efficient implementations
-							of Quicksort are not a stable sort, meaning that the
-							relative order of equal sort items is not preserved.
-							Quicksort is a divide and conquer algorithm. It first divides
-							a large array into two smaller sub-arrays: the low elements
-							and the high elements. Quicksort can then recursively sort the sub-arrays.
-							<ul>
-								<li><strong>Worst Case:</strong> O(n<sup>2</sup>)</li>
-								<li><strong>Best Case:</strong> O(n log(n))</li>
-							</ul>
-						</p>
-					</div>
-					<div id="selection-info" class="shadows info">
-						<h2>Selection Sort</h2>
-						<p>
-							Selection sort divides the input list into two parts:
-							the sublist of items already sorted, which is built up from left
-							to right at the front (left) of the list, and the sublist of items
-							remaining to be sorted that occupy the rest of the list.
-							Initially, the sorted sublist is empty and the unsorted sublist
-							is the entire input list. The algorithm proceeds by finding the smallest
-							(or largest, depending on sorting order) element in the unsorted
-							sublist, swapping it with the leftmost unsorted element (putting it in sorted
-							order), and moving the sublist boundaries one element to the right.
-							<ul>
-								<li><strong>Worst Case:</strong> O(n<sup>2</sup>)</li>
-								<li><strong>Best Case:</strong> O(n<sup>2</sup>)</li>
-							</ul>
-						</p>
-					</div>
-				</div>
-				<div class="row" style="margin: 3% 0 3% 0;">
-					<div id="bubble-psuedo" class="shadows info" style="width: 100%">
-						<h2>Pseudo Code</h2>
-						<pre id="exampleCode">
-begin BubbleSort(list)
-	for all elements of list
-		if list[i] > list[i+1]
-			swap(list[i], list[i+1])
-		end if
-	end for
-	return list
-end BubbleSort</pre>
-					</div>
-					<div id="shell-psuedo" class="shadows info" style="width: 100%">
-						<h2>Pseudo Code</h2>
-						<pre id="exampleCode">
-calculate gap size ($gap)
-while $gap is greater than 0
-	for each element of the list, that is $gap apart
-		Extract the current item
-		Locate the position to insert
-		Insert the item to the position
-	end for
-	calculate gap size ($gap)
-end while</pre>
-					</div>
-					<div id="quick-psuedo" class="shadows info" style="width: 100%">
-						<h2>Pseudo Code</h2>
-						<pre id="exampleCode">
-quickSort(left, right)
-	if right-left <= 0
-		return
-	else     
-		pivot = A[right]
-		partition = partitionFunc(left, right, pivot)
-		quickSort(left,partition-1)
-		quickSort(partition+1,right)    
-	end if		
-end quickSort</pre>
-					</div>
-					<div id="selection-psuedo" class="shadows info" style="width: 100%">
-						<h2>Pseudo Code</h2>
-						<pre id="exampleCode">
-selectionSort(array, size)
-	repeat (size - 1) times
-	set the first unsorted element as the minimum
-	for each of the unsorted elements
-		if element < currentMinimum
-			set element as new minimum
-	swap minimum with first unsorted position
-end selectionSort</pre>
+					<div class="row" id="pseudo-code-row">
+						<div id="pseudo-code-holder" class="shadows info">
+							<h2>Pseudo Code</h2>
+							<pre id="pseudo-code"></pre>
+						</div>
 					</div>
 				</div>
 			</div>

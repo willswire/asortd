@@ -144,6 +144,12 @@ p {
 	width: 100%;
 }
 
+#pseudo-code-row {
+    margin: 3% 0 3% 0;
+    display:block;
+    width:100%;
+}
+
 ul {
 	font-family: Greycliff;
 	font-size: 1.3em;
