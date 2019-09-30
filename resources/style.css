@@ -143,3 +143,9 @@ p {
 .dropdown-menu {
 	width: 100%;
 }
+
+#pseudo-code-row {
+    margin: 3% 0 3% 0;
+    display:block;
+    width:100%;
+}

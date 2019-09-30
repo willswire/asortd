@@ -86,133 +86,6 @@ function redrawBlocks(currentArr, nextArr, animation_speed) {
 	});
 }
 
-function swap(blockArr, i, j) {
-	var tmp = blockArr[i];
-	blockArr[i] = blockArr[j];
-	blockArr[j] = tmp;
-}
-
-function selectionSort(blockArr) {
-	var steps = [
-		[...blockArr]
-	];
-	var len = blockArr.length;
-
-	for (var i = 0; i < len; i++) {
-		var min = i;
-		for (var j = i + 1; j < len; j++) {
-			if (blockArr[j].height < blockArr[min].height) {
-				min = j;
-			}
-		}
-		if (i !== min) {
-			swap(blockArr, i, min);
-			steps.push([...blockArr]);
-		}
-	}
-
-	console.log(steps);
-	return steps;
-}
-
-function partition(blockArr, left, right, steps) {
-	var pivot = blockArr[Math.floor((right + left) / 2)].height, //middle element
-		i = left, //left pointer
-		j = right; //right pointer
-	while (i <= j) {
-		while (blockArr[i].height < pivot) {
-			i++;
-		}
-		while (blockArr[j].height > pivot) {
-			j--;
-		}
-		if (i <= j) {
-			swap(blockArr, i, j);
-			steps.push([...blockArr]);
-			i++;
-			j--;
-		}
-	}
-	return i;
-}
-
-function quickSortHelper(blockArr) {
-	var steps = [
-		[...blockArr]
-	];
-
-	quickSort(blockArr, 0, blockArr.length - 1, steps);
-
-	return steps;
-}
-
-function quickSort(blockArr, left, right, steps) {
-	var index;
-	if (blockArr.length > 1) {
-		index = partition(blockArr, left, right, steps); //index returned from partition
-		if (left < index - 1) {
-			//more elements on the left side of the pivot
-			quickSort(blockArr, left, index - 1, steps);
-		}
-		if (index < right) {
-			//more elements on the right side of the pivot
-			quickSort(blockArr, index, right, steps);
-		}
-	}
-
-	return blockArr;
-}
-
-function shellSort(blockArr) {
-	var steps = [
-		[...blockArr]
-	];
-	var increment = blockArr.length / 2;
-	while (increment > 0) {
-		for (i = increment; i < blockArr.length; i++) {
-			var j = i;
-			var temp = blockArr[i];
-
-			while (
-				j >= increment &&
-				blockArr[j - increment].height > temp.height
-			) {
-				blockArr[j] = blockArr[j - increment];
-				j = j - increment;
-			}
-
-			blockArr[j] = temp;
-			steps.push([...blockArr]);
-		}
-
-		if (increment == 2) {
-			increment = 1;
-		} else {
-			increment = parseInt((increment * 5) / 11);
-		}
-	}
-	return steps;
-}
-
-function bubbleSort(blockArr) {
-	var steps = [
-		[...blockArr]
-	];
-	var len = blockArr.length;
-
-	for (var i = len - 1; i >= 0; i--) {
-		for (var j = 1; j <= i; j++) {
-			if (blockArr[j - 1].height > blockArr[j].height) {
-				swap(blockArr, j - 1, j);
-				steps.push([...blockArr]);
-			}
-		}
-	}
-
-	console.log(steps);
-	return steps;
-}
-
 function drawNextStep(steps, currentStep, animation_speed) {
 	if (currentStep >= 0 && currentStep + 1 < steps.length) {
 		redrawBlocks(
@@ -234,67 +107,44 @@ function drawPreviousStep(steps, currentStep, animation_speed) {
 }
 
 function selectedInfo(choice) {
-	switch (choice) {
-		case "Bubble Sort":
-			$(".info").hide();
-			$("#bubble-info").show();
-			$("#bubble-psuedo").show();
-			break;
-		case "Shell Sort":
-			$(".info").hide();
-			$("#shell-info").show();
-			$("#shell-psuedo").show();
-			break;
-		case "Quick Sort":
-			$(".info").hide();
-			$("#quick-info").show();
-			$("#quick-psuedo").show();
-			break;
-		case "Selection Sort":
-			$(".info").hide();
-			$("#selection-info").show();
-			$("#selection-psuedo").show();
-			break;
-		default:
-			$(".info").hide();
-			$("#asortd-info").show();
+	if(choice){
+		$("#asortd-info").hide();
+		$('#sort-info').show();
+		$('#pseudo-code-holder').show();
+		$('#sort-info-header').text(choice.name);
+		$('#sort-info-description').text(choice.description);
+		$('#pseudo-code').html(choice.pseudoCode)
+	}
+	else{
+		$("#sort-info").hide();
+		$("#asortd-info").show();
+		$('#pseudo-code-holder').hide();
 	}
 }
 
 function selectedAlgo(choice, blocks) {
 	var steps;
-
-	switch (choice) {
-		case "Bubble Sort":
-			steps = bubbleSort(blocks);
-			$("#bubble-info").show();
-			$("#asortd-info").hide();
-			//Change pseudocode section
-			break;
-		case "Shell Sort":
-			steps = shellSort(blocks);
-			//Change info section
-			//Change pseudocode section
-			break;
-		case "Quick Sort":
-			steps = quickSortHelper(blocks);
-			//Change info section
-			//Change pseudocode section
-			break;
-		case "Selection Sort":
-			steps = selectionSort(blocks);
-			//Change info section
-			//Change pseudocode section
-			break;
-		default:
-			alert("Select a Sorting Algorithm!");
-
+	if(choice){
+		steps = choice.sort(blocks);
 	}
+	else{
+		alert("Select a Sorting Algorithm!");
+	}	
 	return steps;
 }
 
 // Executed when page is loaded
 $(function () {
+	var selectedAlgorithm = SORTING_ALGORITHMS.BUBBLE;
+
+	var options = Object.keys(SORTING_ALGORITHMS).reduce((accumulator, key) => {
+		sort = SORTING_ALGORITHMS[key];
+		return accumulator + `<span key={${key}} class="dropdown-item">${sort.name}</span>`
+	}, '');
+	$(".dropdown-menu").html(options);
+
+
+
 	var containerID = "#sorting_container";
 	var blocks = randBlockArray(NUM_BLOCKS, MAX_BLOCK_HEIGHT);
 	$(containerID).html("");
@@ -308,7 +158,6 @@ $(function () {
 
 	var isReset = false;
 
-	var choice = null;
 
 	$("#dropdownMenuButton").click(function () {
 		if ($("#dd-menu").hasClass("show")) {
@@ -318,14 +167,18 @@ $(function () {
 			$(".dropdown-item").click(function () {
 				$("#dropdownMenuButton").text($(this).text());
 				$("#dd-menu").removeClass("show");
-				choice = $(this).text();
+				const optionText = $(this).text();
+				selectedAlgorithm = SORTING_ALGORITHMS[Object.keys(SORTING_ALGORITHMS).find((key) => {
+					let sort = SORTING_ALGORITHMS[key];
+					return sort.name === optionText;
+				})];
 
 				isReset = false;
 				paused = true;
-				selectedInfo(choice);
+				selectedInfo(selectedAlgorithm);
 				var oldSteps = steps ? steps[currentIndex] : null;
 				currentIndex = 0;
-				steps = selectedAlgo(choice, [...blocks]);
+				steps = selectedAlgo(selectedAlgorithm, [...blocks]);
 
 				$("#sort_button").html("START");
 				if (oldSteps) {
@@ -346,8 +199,6 @@ $(function () {
 	// Just for testing
 	$("#sort_button").click(async function (event) {
 		if (paused && !isReset && steps != null) {
-			console.log("HIT HERE");
-			console.log(currentIndex, steps.length);
 			$("#sort_button").html("PAUSE");
 			paused = false;
 			for (var i = currentIndex; i < steps.length; i++) {
@@ -401,8 +252,6 @@ $(function () {
 			MAX_DELAY_VALUE -
 			parseInt($("#slider_range").val()) +
 			DELAY_SLIDER_OFFSET_VALUE;
-		console.log(animation_speed);
-		console.log(animation_speed);
 	});
 });
 
