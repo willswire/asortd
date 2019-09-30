@@ -113,7 +113,7 @@ function selectedInfo(choice) {
 		$('#pseudo-code-holder').show();
 		$('#sort-info-header').text(choice.name);
 		$('#sort-info-description').text(choice.description);
-		$('#pseudo-code-holder').text(choice.pseudoCode)
+		$('#pseudo-code').html(choice.pseudoCode)
 	}
 	else{
 		$("#sort-info").hide();
