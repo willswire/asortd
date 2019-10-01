@@ -133,8 +133,7 @@ function selectedAlgo(choice, blocks) {
 	return steps;
 }
 
-// Executed when page is loaded
-$(function () {
+$(() => {
 	var selectedAlgorithm = SORTING_ALGORITHMS.BUBBLE;
 
 	var options = Object.keys(SORTING_ALGORITHMS).reduce((accumulator, key) => {
@@ -184,8 +183,11 @@ $(function () {
 				if (oldSteps) {
 					redrawBlocks(oldSteps, steps[0], animation_speed);
 				}
+        $(containerID).html("");
 
-			});
+        drawBlocks(containerID, blocks);
+
+      });
 		}
 	});
 
@@ -196,7 +198,6 @@ $(function () {
 	});
 	$("#slider_range").val(DEFAULT_DELAY_VALUE);
 
-	// Just for testing
 	$("#sort_button").click(async function (event) {
 		if (paused && !isReset && steps != null) {
 			$("#sort_button").html("PAUSE");
