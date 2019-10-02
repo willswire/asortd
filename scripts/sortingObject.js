@@ -18,17 +18,14 @@ const SORTING_ALGORITHMS = {
     bestCase: "Ω(n)",
     pseudoCode: `
 foreach (gap in gaps)
-{
   for (i = gap; i < n; i += 1)
-  {
     temp = a[i]
     for (j = i; j >= gap and a[j - gap] > temp; j -= gap)
-      {
         a[j] = a[j - gap]
-      }
       a[j] = temp
-  }
-}
+    endfor
+  endfor
+endforeach
     `,
     sort: bubbleSort,
   },
