@@ -133,7 +133,40 @@ function selectedAlgo(choice, blocks) {
 	return steps;
 }
 
+function scrambleTitle(){
+	var title = "ASORTD";
+	var shuffledTitle = title.split('').sort(function(){return 0.5-Math.random()}).join('');
+	while(shuffledTitle === "ASORTD"){
+		shuffledTitle = shuffledTitle.split('').sort(function(){return 0.5-Math.random()}).join('');
+	}
+	$("#sorting_title").text(shuffledTitle);
+}
+
+async function sortTitle(){
+	var currentTitle = $("#sorting_title").text();
+	var iterations = 0;
+
+	while(currentTitle !== "ASORTD"){
+		iterations++;
+		await sleep(25);
+
+		// Arbitrary number so that we dont keep randomizing forever
+		if(iterations == 200){
+			currentTitle = "ASORTD";
+		}
+		else{
+			currentTitle = currentTitle.split('').sort(function(){return 0.5-Math.random()}).join('');
+			$("#sorting_title").text(currentTitle);
+		}
+	}
+
+	$("#sorting_title").text(currentTitle);
+}
+
 $(() => {
+	scrambleTitle();
+	sortTitle();
+	
 	var selectedAlgorithm = SORTING_ALGORITHMS.BUBBLE;
 
 	var options = Object.keys(SORTING_ALGORITHMS).reduce((accumulator, key) => {
