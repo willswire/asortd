@@ -151,7 +151,7 @@ async function sortTitle(){
 		await sleep(25);
 
 		// Arbitrary number so that we dont keep randomizing forever
-		if(iterations == 200){
+		if(iterations == 120){
 			currentTitle = "ASORTD";
 		}
 		else{
