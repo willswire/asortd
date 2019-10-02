@@ -213,9 +213,6 @@ $(() => {
 				steps = selectedAlgo(selectedAlgorithm, [...blocks]);
 
 				$("#sort_button").html("START");
-				if (oldSteps) {
-					redrawBlocks(oldSteps, steps[0], animation_speed);
-				}
         $(containerID).html("");
 
         drawBlocks(containerID, blocks);
