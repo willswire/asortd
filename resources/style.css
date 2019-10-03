@@ -14,7 +14,7 @@
 }
 
 body {
-	padding: 3%;
+	padding: 16px;
 	background: #ffd200 url("yellow-abstract-panel.jpg") no-repeat fixed center;
 	background-size: cover;
 	font-size: 75%;
@@ -42,6 +42,18 @@ button {
 
 .controls:hover {
 	background-color: #00a0df;
+}
+
+.txta {
+  max-width: 500px;
+  min-height: 100px;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+	resize: none;
+}
+
+.inputs {
+	margin-bottom: 8px;
 }
 
 .shadows {
@@ -103,7 +115,14 @@ h1 {
 	border: 3px solid white;
 	border-radius: 10px;
 	background-color: white;
-	padding: 1% 2.5% 1% 2.5%;
+	padding: 8px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+.input-sort{
+	max-width: 500px;
 }
 
 #exampleCode {
@@ -112,6 +131,10 @@ h1 {
 	display: block;
 	border-radius: 10px;
 	padding: 10px;
+}
+
+.fullWidth {
+	width: 100%;
 }
 
 h2 {

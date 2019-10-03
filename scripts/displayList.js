@@ -107,25 +107,49 @@ function drawPreviousStep(steps, currentStep, animation_speed) {
 }
 
 function selectedInfo(choice) {
-	if(choice){
+	var allSorts = SORTING_ALGORITHMS.concat(getSorts());
+	var options = allSorts.reduce((accumulator, sort) => {
+		return accumulator + `<span key={${sort.name}} class="dropdown-item">${sort.name}</span>`
+	}, '');
+	$(".dropdown-menu").html(options);
+	
+	if(choice && choice.name !== "Custom"){
 		$("#asortd-info").hide();
+		$('#input-sort-info').hide();
 		$('#sort-info').show();
 		$('#pseudo-code-holder').show();
+		$('#main').show();
+		$('#controls').show();
+
 		$('#sort-info-header').text(choice.name);
 		$('#sort-info-description').text(choice.description);
 		$('#pseudo-code').html(choice.pseudoCode)
 	}
+	else if(choice && choice.name === "Custom") {
+		$("#asortd-info").hide();
+		$('#sort-info').hide();
+		$('#pseudo-code-holder').hide();
+		$('#main').hide();
+		$('#controls').hide();
+		$('#input-sort-info').show();
+	}
 	else{
 		$("#sort-info").hide();
+		$('#input-sort-info').hide();
 		$("#asortd-info").show();
 		$('#pseudo-code-holder').hide();
+		$('#main').show();
+		$('#controls').show();
 	}
 }
 
 function selectedAlgo(choice, blocks) {
 	var steps;
-	if(choice){
+	if(choice && choice.name !== "Custom"){
 		steps = choice.sort(blocks);
+	}
+	else if (choice && choice.name === "Custom"){
+
 	}
 	else{
 		alert("Select a Sorting Algorithm!");
@@ -167,11 +191,11 @@ $(() => {
 	scrambleTitle();
 	sortTitle();
 	
-	var selectedAlgorithm = SORTING_ALGORITHMS.BUBBLE;
+	var selectedAlgorithm;
 
-	var options = Object.keys(SORTING_ALGORITHMS).reduce((accumulator, key) => {
-		sort = SORTING_ALGORITHMS[key];
-		return accumulator + `<span key={${key}} class="dropdown-item">${sort.name}</span>`
+	var allSorts = SORTING_ALGORITHMS.concat(getSorts());
+	var options = allSorts.reduce((accumulator, sort) => {
+		return accumulator + `<span key={${sort.name}} class="dropdown-item">${sort.name}</span>`
 	}, '');
 	$(".dropdown-menu").html(options);
 
@@ -195,15 +219,15 @@ $(() => {
 		if ($("#dd-menu").hasClass("show")) {
 			$("#dd-menu").removeClass("show");
 		} else {
+			var allSorts = SORTING_ALGORITHMS.concat(getSorts());
 			$("#dd-menu").addClass("show");
 			$(".dropdown-item").click(function () {
 				$("#dropdownMenuButton").text($(this).text());
 				$("#dd-menu").removeClass("show");
 				const optionText = $(this).text();
-				selectedAlgorithm = SORTING_ALGORITHMS[Object.keys(SORTING_ALGORITHMS).find((key) => {
-					let sort = SORTING_ALGORITHMS[key];
+				selectedAlgorithm = allSorts.find((sort) => {
 					return sort.name === optionText;
-				})];
+				});
 
 				isReset = false;
 				paused = true;

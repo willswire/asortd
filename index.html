@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="scripts/displayList.js"></script>
 	<script type="text/javascript" src="scripts/sortingFunctions.js"></script>
 	<script type="text/javascript" src="scripts/sortingObject.js"></script>
+	<script type="text/javascript" src="scripts/customSorts.js"></script>
 	<script src="https://kit.fontawesome.com/9c3b18b2e3.js"></script>
 	<!-- Style Resources -->
 	<link rel="stylesheet" href="resources/style.css" />
@@ -19,17 +20,19 @@
 
 <body>
 	<!-- Div that contains the main display -->
-	<div class="container">
+	<div class="container-fluid">
 		<!-- Row that contains the two column structure -->
 		<div class="row">
+			<div class="fullWidth col-md-12 col-lg-1 col-xl-2"></div>
 			<!-- Column that contains the sorting display and controls -->
-			<div class="col-md">
+			<div class="fullWidth col-md-6 col-lg-5 col-xl-4">
 				<!-- The main sorting display -->
 				<div id="main" class="shadows">
 					<!-- The container that holds all the items being sorted -->
 					<h1 id="sorting_title">ASORTD</h1>
 					<div id="sorting_container"></div>
 				</div>
+				<div id="controls">
 				<!-- Row that contains the controls, each control is in a column -->
 				<div class="row" id="control_panel">
 					<!-- Column that contains the previous button -->
@@ -72,9 +75,10 @@
 						</div>
 					</div>
 				</div>
+				</div>
 			</div>
 			<!-- Column that contains the info about each sort, and the dropdown to select sorts -->
-			<div class="col-md">
+			<div class="fullWidth col-md-6 col-lg-5 col-xl-4">
 				<div class="row" style="margin: 0;">
 					<div id="asortd-info" class="shadows info" style="display: initial;">
 						<h2>ASORTD</h2>
@@ -96,8 +100,48 @@
 					</div>
 				</div>
 			</div>
+			<div class="fullWidth col-xs-12">
+					<div id="input-sort-info" class="shadows info input-sort">
+							<h2>Sorting Information</h2>
+							
+							<label for="input-name">Algorithm Name</label>
+							<input id="input-name" class="form-control inputs" type="text" placeholder="Sorting Name">
+							
+							<label for="input-description">Algorithm Description</label>
+							<textarea id="input-description" class="form-control txta inputs" placeholder="Description"></textarea>
+							
+							<label for="input-worst-case">Worst Case</label>
+							<input id="input-worst-case" class="form-control inputs" type="text" value="O()">
+							
+							<label for="input-best-case">Best Case</label>
+							<input id="input-best-case" class="form-control inputs" type="text" value="Ω()"> 
+
+							<label for="input-pseudo-code">Pseudo Code</label>
+							<textarea id="input-pseudo-code" class="form-control txta inputs" placeholder="Pseudo-Code"></textarea>
+							
+							<label for="input-function">Algorithm Function (JS)</label>
+							<textarea id="input-function" class="form-control txta inputs" placeholder="Algorithm Function">
+var steps = [
+	[...blockArr]
+];
+var len = blockArr.length;
+
+for (var i = len - 1; i >= 0; i--) {
+	for (var j = 1; j <= i; j++) {
+		if (blockArr[j - 1].height > blockArr[j].height) {
+			swap(blockArr, j - 1, j);
+			steps.push([...blockArr]);
+		}
+	}
+}
+return steps;</textarea>
+							<button id="cancel-input" class="controls">Cancel</button>
+							<button id="save-input" class="controls">Save</button>
+						</div>
+			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="scripts/multilineInputHelper.js"></script>
 </body>
 
 </html>
