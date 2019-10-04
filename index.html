@@ -98,6 +98,8 @@
 							<i class="fas fa-edit"></i>
 						</button>
 						<p id="sort-info-description"></p>
+						<p id="sort-info-worst-case"></p>
+						<p id="sort-info-best-case"></p>
 					</div>
 					<div class="row" id="pseudo-code-row">
 						<div id="pseudo-code-holder" class="shadows info">
@@ -129,21 +131,7 @@
 						placeholder="Pseudo-Code"></textarea>
 
 					<label for="input-function">Algorithm Function (JS)</label>
-					<textarea id="input-function" class="form-control txta inputs" placeholder="Algorithm Function">
-var steps = [
-	[...blockArr]
-];
-var len = blockArr.length;
-
-for (var i = len - 1; i >= 0; i--) {
-	for (var j = 1; j <= i; j++) {
-		if (blockArr[j - 1].height > blockArr[j].height) {
-			swap(blockArr, j - 1, j);
-			steps.push([...blockArr]);
-		}
-	}
-}
-return steps;</textarea>
+					<textarea id="input-function" class="form-control txta inputs" placeholder="Algorithm Function"></textarea>
 					<div class="row" id="control-panel-input" style="margin: 4px">
 						<!-- Column that contains the delete button -->
 						<div class="col" style="padding-left: 0">

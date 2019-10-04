@@ -1,10 +1,10 @@
 function swap(blockArr, i, j) {
-	var tmp = blockArr[i];
-	blockArr[i] = blockArr[j];
-	blockArr[j] = tmp;
+  var tmp = blockArr[i];
+  blockArr[i] = blockArr[j];
+  blockArr[j] = tmp;
 }
 
-function bubbleSort(blockArr){
+function bubbleSort(blockArr) {
   var steps = [
     [...blockArr]
   ];
@@ -22,7 +22,8 @@ function bubbleSort(blockArr){
   return steps;
 }
 
-function shellSort(blockArr){
+
+function shellSort(blockArr) {
   var steps = [
     [...blockArr]
   ];
@@ -53,51 +54,51 @@ function shellSort(blockArr){
   return steps;
 }
 
-function quickSortHelper(blockArr){
+function quickSortHelper(blockArr) {
   var steps = [
     [...blockArr]
   ];
-  quickSort(blockArr, 0, blockArr.length - 1, steps);    
+  quickSort(blockArr, 0, blockArr.length - 1, steps);
   return steps;
 }
 
 function quickSort(blockArr, left, right, steps) {
-	var index;
-	if (blockArr.length > 1) {
-		index = partition(blockArr, left, right, steps); //index returned from partition
-		if (left < index - 1) {
-			//more elements on the left side of the pivot
-			quickSort(blockArr, left, index - 1, steps);
-		}
-		if (index < right) {
-			//more elements on the right side of the pivot
-			quickSort(blockArr, index, right, steps);
-		}
-	}
+  var index;
+  if (blockArr.length > 1) {
+    index = partition(blockArr, left, right, steps); //index returned from partition
+    if (left < index - 1) {
+      //more elements on the left side of the pivot
+      quickSort(blockArr, left, index - 1, steps);
+    }
+    if (index < right) {
+      //more elements on the right side of the pivot
+      quickSort(blockArr, index, right, steps);
+    }
+  }
 
-	return blockArr;
+  return blockArr;
 }
 
 
 function partition(blockArr, left, right, steps) {
-	var pivot = blockArr[Math.floor((right + left) / 2)].height, //middle element
-		i = left, //left pointer
-		j = right; //right pointer
-	while (i <= j) {
-		while (blockArr[i].height < pivot) {
-			i++;
-		}
-		while (blockArr[j].height > pivot) {
-			j--;
-		}
-		if (i <= j) {
-			swap(blockArr, i, j);
-			steps.push([...blockArr]);
-			i++;
-			j--;
-		}
-	}
-	return i;
+  var pivot = blockArr[Math.floor((right + left) / 2)].height, //middle element
+    i = left, //left pointer
+    j = right; //right pointer
+  while (i <= j) {
+    while (blockArr[i].height < pivot) {
+      i++;
+    }
+    while (blockArr[j].height > pivot) {
+      j--;
+    }
+    if (i <= j) {
+      swap(blockArr, i, j);
+      steps.push([...blockArr]);
+      i++;
+      j--;
+    }
+  }
+  return i;
 }
 
 function selectionSort(blockArr) {

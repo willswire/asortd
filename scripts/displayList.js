@@ -134,6 +134,8 @@ function selectedInfo(choice) {
 
 		$('#sort-info-header').text(choice.name);
 		$('#sort-info-description').text(choice.description);
+		$('#sort-info-worst-case').text('Worst Case: ' + choice.worstCase);
+		$('#sort-info-best-case').text('Best Case: ' + choice.bestCase);
 		$('#pseudo-code').html(choice.pseudoCode)
 	}
 	else if (choice && choice.name === "Custom") {
@@ -145,6 +147,15 @@ function selectedInfo(choice) {
 		$('#controls').hide();
 		$('#input-sort-info').show();
 		$('#delete-input').hide();
+		/*
+		
+		*/
+		$('#input-name').val('');
+		$('#input-description').val('');
+		$('#input-worst-case').val('O()');
+		$('#input-best-case').val('Ω()');
+		$('#input-pseudo-code').val('');
+		$('#input-function').val('var steps = [\n  [...blockArr]\n];\nvar len = blockArr.length;\n\nfor (var i = len - 1; i >= 0; i--) {\n  for (var j = 1; j <= i; j++) {\n    if (blockArr[j - 1].height > blockArr[j].height) {\n      swap(blockArr, j - 1, j);\n      steps.push([...blockArr]);\n    }\n  }\n}\nreturn steps;');
 	}
 	else {
 		$("#sort-info").hide();
@@ -154,6 +165,8 @@ function selectedInfo(choice) {
 		$('#pseudo-code-holder').hide();
 		$('#main').show();
 		$('#controls').show();
+
+		$('#dropdownMenuButton').html('Select Sorting Algorithm');
 	}
 }
 
@@ -235,6 +248,7 @@ $(() => {
 
 	var isReset = false;
 
+	$('#error').hide();
 
 	$("#dropdownMenuButton").click(function () {
 		if ($("#dd-menu").hasClass("show")) {
