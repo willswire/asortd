@@ -13,11 +13,34 @@
 	src: url(Greycliff-CF-Regular.otf);
 }
 
+html {
+	height: 100%;
+	margin: 0;
+}
+
 body {
-	padding: 16px;
-	background: #ffd200 url("yellow-abstract-panel.jpg") no-repeat fixed center;
+	padding-top: 16px;
+	background: #8f8d86 url("yellow-abstract-panel.jpg") no-repeat fixed center;
 	background-size: cover;
 	font-size: 75%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.wrapper {
+	flex: 1 0 auto;
+}
+
+.footer {
+	flex-shrink: 0;
+	margin: 0;
+	background-color: #003c71;
+	color: white;
+	border-top: 5px solid white;
+	padding: 16px;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 #control_panel {
@@ -66,6 +89,28 @@ button {
 	border: 0;
 	font-size: 1.3em;
 	float: right;
+}
+.mailto-button{
+	color: white;
+	background-color: #003c71;
+	border: 0;
+	margin-left: 8px;
+	margin-right: 4px
+}
+
+.developer-holder{
+	background-color: #003c71;
+	border: 3px solid white;
+	border-radius: 10px;
+	font-family: GreycliffBold;
+	color: white;
+	padding: 4px;
+	margin: 4px;
+}
+
+.developer-list{
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .icon-button:hover {
