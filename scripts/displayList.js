@@ -120,6 +120,7 @@ function selectedInfo(choice) {
 		$("#asortd-info").hide();
 		$('#input-sort-info').hide();
 		$('#sort-info').show();
+		$('#error').hide();
 		$('#pseudo-code-holder').show();
 		$('#main').show();
 		$('#controls').show();
@@ -139,6 +140,7 @@ function selectedInfo(choice) {
 		$("#asortd-info").hide();
 		$('#sort-info').hide();
 		$('#pseudo-code-holder').hide();
+		$('#error').hide();
 		$('#main').hide();
 		$('#controls').hide();
 		$('#input-sort-info').show();
@@ -148,6 +150,7 @@ function selectedInfo(choice) {
 		$("#sort-info").hide();
 		$('#input-sort-info').hide();
 		$("#asortd-info").show();
+		$('#error').hide();
 		$('#pseudo-code-holder').hide();
 		$('#main').show();
 		$('#controls').show();
@@ -157,7 +160,15 @@ function selectedInfo(choice) {
 function selectedAlgo(choice, blocks) {
 	var steps;
 	if (choice && choice.name !== "Custom") {
-		steps = choice.sort(blocks);
+		try{
+			steps = choice.sort(blocks);
+		}
+		catch(error){
+			$('#error').show();
+			$('#controls').hide();
+			$('#error-message').text(error.message);
+			steps = [[...blocks]];
+		}
 	}
 	else if (choice && choice.name === "Custom") {
 

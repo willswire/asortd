@@ -11,26 +11,33 @@ $(() => {
     const functionText = $('#input-function').val();
 
     if (nameText && functionText) {
-      const sortFunction = new Function('blockArr', functionText);
-      console.log(typeof sortFunction);
-      var sortObject = {
-        name: nameText,
-        description: descText,
-        worstCase: worstCaseText,
-        bestCase: bestCaseText,
-        pseudoCode: pseudoCodeText,
-        sortString: functionText,
-        custom: true,
+      var sortFunction;
+      try {
+        sortFunction = new Function('blockArr', functionText);
       }
-      if (selectedAlgorithm.name === 'Custom') {
-        addSort(sortObject);
-        selectedInfo();
+      catch (error) {
+        alert("Function failed to compile: " + error.message);
       }
-      else {
-        var customSorts = getSorts();
-        var index = customSorts.findIndex((sort) => sort.name === selectedAlgorithm.name);
-        editSort(index, sortObject);
-        selectedInfo();
+      if (sortFunction) {
+        var sortObject = {
+          name: nameText,
+          description: descText,
+          worstCase: worstCaseText,
+          bestCase: bestCaseText,
+          pseudoCode: pseudoCodeText,
+          sortString: functionText,
+          custom: true,
+        }
+        if (selectedAlgorithm.name === 'Custom') {
+          addSort(sortObject);
+          selectedInfo();
+        }
+        else {
+          var customSorts = getSorts();
+          var index = customSorts.findIndex((sort) => sort.name === selectedAlgorithm.name);
+          editSort(index, sortObject);
+          selectedInfo();
+        }
       }
     }
     else {
@@ -43,9 +50,11 @@ $(() => {
     $('#sort-info').hide();
     $('#pseudo-code-holder').hide();
     $('#main').hide();
+    $('#error').hide();
     $('#controls').hide();
     $('#input-sort-info').show();
     $('#delete-input').show();
+
 
     $('#input-name').val(selectedAlgorithm.name);
     $('#input-description').val(selectedAlgorithm.description);
