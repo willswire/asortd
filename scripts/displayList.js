@@ -9,6 +9,9 @@ const DELAY_SLIDER_OFFSET_VALUE = 25;
 const DEFAULT_DELAY_VALUE = 150;
 const MAX_DELAY_VALUE = 300;
 
+// GLOBAL VARIABLE - NEEDS TO BE SHARED BETWEEN FILES
+var selectedAlgorithm;
+
 // Class: Block
 // Attributes:
 //      Number Height: the height of the block
@@ -107,55 +110,111 @@ function drawPreviousStep(steps, currentStep, animation_speed) {
 }
 
 function selectedInfo(choice) {
-	if(choice){
+	var allSorts = SORTING_ALGORITHMS.concat(getSorts());
+	var options = allSorts.reduce((accumulator, sort) => {
+		return accumulator + `<span key={${sort.name}} class="dropdown-item">${sort.name}</span>`
+	}, '');
+	$(".dropdown-menu").html(options);
+
+	if (choice && choice.name !== "Custom") {
 		$("#asortd-info").hide();
+		$('#input-sort-info').hide();
 		$('#sort-info').show();
+		$('#error').hide();
 		$('#pseudo-code-holder').show();
+		$('#main').show();
+		$('#controls').show();
+
+		if (choice.custom) {
+			$('#edit-button').show();
+		}
+		else {
+			$('#edit-button').hide();
+		}
+
 		$('#sort-info-header').text(choice.name);
 		$('#sort-info-description').text(choice.description);
+		$('#sort-info-worst-case').text('Worst Case: ' + choice.worstCase);
+		$('#sort-info-best-case').text('Best Case: ' + choice.bestCase);
 		$('#pseudo-code').html(choice.pseudoCode)
 	}
-	else{
-		$("#sort-info").hide();
-		$("#asortd-info").show();
+	else if (choice && choice.name === "Custom") {
+		$("#asortd-info").hide();
+		$('#sort-info').hide();
 		$('#pseudo-code-holder').hide();
+		$('#error').hide();
+		$('#main').hide();
+		$('#controls').hide();
+		$('#input-sort-info').show();
+		$('#delete-input').hide();
+		/*
+		
+		*/
+		$('#input-name').val('');
+		$('#input-description').val('');
+		$('#input-worst-case').val('O()');
+		$('#input-best-case').val('Ω()');
+		$('#input-pseudo-code').val('');
+		$('#input-function').val('var steps = [\n  [...blockArr]\n];\nvar len = blockArr.length;\n\nfor (var i = len - 1; i >= 0; i--) {\n  for (var j = 1; j <= i; j++) {\n    if (blockArr[j - 1].height > blockArr[j].height) {\n      swap(blockArr, j - 1, j);\n      steps.push([...blockArr]);\n    }\n  }\n}\nreturn steps;');
+	}
+	else {
+		$("#sort-info").hide();
+		$('#input-sort-info').hide();
+		$("#asortd-info").show();
+		$('#error').hide();
+		$('#pseudo-code-holder').hide();
+		$('#main').show();
+		$('#controls').show();
+
+		$('#dropdownMenuButton').html('Select Sorting Algorithm');
 	}
 }
 
 function selectedAlgo(choice, blocks) {
 	var steps;
-	if(choice){
-		steps = choice.sort(blocks);
+	if (choice && choice.name !== "Custom") {
+		try{
+			steps = choice.sort(blocks);
+		}
+		catch(error){
+			$('#error').show();
+			$('#controls').hide();
+			$('#error-message').text(error.message);
+			steps = [[...blocks]];
+		}
 	}
-	else{
+	else if (choice && choice.name === "Custom") {
+
+	}
+	else {
 		alert("Select a Sorting Algorithm!");
-	}	
+	}
 	return steps;
 }
 
-function scrambleTitle(){
+function scrambleTitle() {
 	var title = "ASORTD";
-	var shuffledTitle = title.split('').sort(function(){return 0.5-Math.random()}).join('');
-	while(shuffledTitle === "ASORTD"){
-		shuffledTitle = shuffledTitle.split('').sort(function(){return 0.5-Math.random()}).join('');
+	var shuffledTitle = title.split('').sort(function () { return 0.5 - Math.random() }).join('');
+	while (shuffledTitle === "ASORTD") {
+		shuffledTitle = shuffledTitle.split('').sort(function () { return 0.5 - Math.random() }).join('');
 	}
 	$("#sorting_title").text(shuffledTitle);
 }
 
-async function sortTitle(){
+async function sortTitle() {
 	var currentTitle = $("#sorting_title").text();
 	var iterations = 0;
 
-	while(currentTitle !== "ASORTD"){
+	while (currentTitle !== "ASORTD") {
 		iterations++;
 		await sleep(25);
 
 		// Arbitrary number so that we dont keep randomizing forever
-		if(iterations == 50){
+		if (iterations == 50) {
 			currentTitle = "ASORTD";
 		}
-		else{
-			currentTitle = currentTitle.split('').sort(function(){return 0.5-Math.random()}).join('');
+		else {
+			currentTitle = currentTitle.split('').sort(function () { return 0.5 - Math.random() }).join('');
 			$("#sorting_title").text(currentTitle);
 		}
 	}
@@ -166,12 +225,11 @@ async function sortTitle(){
 $(() => {
 	scrambleTitle();
 	sortTitle();
-	
-	var selectedAlgorithm = SORTING_ALGORITHMS.BUBBLE;
 
-	var options = Object.keys(SORTING_ALGORITHMS).reduce((accumulator, key) => {
-		sort = SORTING_ALGORITHMS[key];
-		return accumulator + `<span key={${key}} class="dropdown-item">${sort.name}</span>`
+
+	var allSorts = SORTING_ALGORITHMS.concat(getSorts());
+	var options = allSorts.reduce((accumulator, sort) => {
+		return accumulator + `<span key={${sort.name}} class="dropdown-item">${sort.name}</span>`
 	}, '');
 	$(".dropdown-menu").html(options);
 
@@ -190,20 +248,21 @@ $(() => {
 
 	var isReset = false;
 
+	$('#error').hide();
 
 	$("#dropdownMenuButton").click(function () {
 		if ($("#dd-menu").hasClass("show")) {
 			$("#dd-menu").removeClass("show");
 		} else {
+			var allSorts = SORTING_ALGORITHMS.concat(getSorts());
 			$("#dd-menu").addClass("show");
 			$(".dropdown-item").click(function () {
 				$("#dropdownMenuButton").text($(this).text());
 				$("#dd-menu").removeClass("show");
 				const optionText = $(this).text();
-				selectedAlgorithm = SORTING_ALGORITHMS[Object.keys(SORTING_ALGORITHMS).find((key) => {
-					let sort = SORTING_ALGORITHMS[key];
+				selectedAlgorithm = allSorts.find((sort) => {
 					return sort.name === optionText;
-				})];
+				});
 
 				isReset = false;
 				paused = true;
@@ -213,11 +272,11 @@ $(() => {
 				steps = selectedAlgo(selectedAlgorithm, [...blocks]);
 
 				$("#sort_button").html("START");
-        $(containerID).html("");
+				$(containerID).html("");
 
-        drawBlocks(containerID, blocks);
+				drawBlocks(containerID, blocks);
 
-      });
+			});
 		}
 	});
 
