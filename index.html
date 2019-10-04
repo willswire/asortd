@@ -33,48 +33,48 @@
 					<div id="sorting_container"></div>
 				</div>
 				<div id="controls">
-				<!-- Row that contains the controls, each control is in a column -->
-				<div class="row" id="control_panel">
-					<!-- Column that contains the previous button -->
-					<div class="col" style="padding-left: 0">
-						<button class="controls shadows" id="prev_button">
-							<i class="fas fa-backward"></i>
-						</button>
+					<!-- Row that contains the controls, each control is in a column -->
+					<div class="row" id="control_panel">
+						<!-- Column that contains the previous button -->
+						<div class="col" style="padding-left: 0">
+							<button class="controls shadows" id="prev_button">
+								<i class="fas fa-backward"></i>
+							</button>
+						</div>
+						<!-- Column that contains the start button -->
+						<div class="col">
+							<button class="controls shadows" id="sort_button">
+								START
+							</button>
+						</div>
+						<!-- Column that contains the next button -->
+						<div class="col" style="padding-right: 0">
+							<button class="controls shadows" id="next_button">
+								<i class="fas fa-forward"></i>
+							</button>
+						</div>
 					</div>
-					<!-- Column that contains the start button -->
-					<div class="col">
-						<button class="controls shadows" id="sort_button">
-							START
-						</button>
+					<!-- Row that contains the speed controls-->
+					<div class="row" id="control_panel">
+						<div class="card col shadows" id="slider">
+							<span class="label label-primary" style="text-align:center">SPEED</span>
+							<input type="range" class="custom-range" id="slider_range" id="customRange2" />
+						</div>
 					</div>
-					<!-- Column that contains the next button -->
-					<div class="col" style="padding-right: 0">
-						<button class="controls shadows" id="next_button">
-							<i class="fas fa-forward"></i>
-						</button>
-					</div>
-				</div>
-				<!-- Row that contains the speed controls-->
-				<div class="row" id="control_panel">
-					<div class="card col shadows" id="slider">
-						<span class="label label-primary" style="text-align:center">SPEED</span>
-						<input type="range" class="custom-range" id="slider_range" id="customRange2" />
-					</div>
-				</div>
-				<div class="row" id="control_panel">
-					<div class="dropdown">
-						<button class="dropdown-toggle controls" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">
-							Select Sorting Algorithm
-						</button>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenu" id="dd-menu">
-							<!-- <a class="dropdown-item" href="#">Bubble Sort</a>
+					<div class="row" id="control_panel">
+						<div class="dropdown">
+							<button class="dropdown-toggle controls shadows" type="button" id="dropdownMenuButton"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Select Sorting Algorithm
+							</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenu" id="dd-menu">
+								<!-- <a class="dropdown-item" href="#">Bubble Sort</a>
 							<a class="dropdown-item" href="#">Shell Sort</a>
 							<a class="dropdown-item" href="#">Quick Sort</a>
 							<a class="dropdown-item" href="#">Selection Sort</a> -->
+							</div>
 						</div>
 					</div>
-				</div>
 				</div>
 			</div>
 			<!-- Column that contains the info about each sort, and the dropdown to select sorts -->
@@ -89,7 +89,10 @@
 						</p>
 					</div>
 					<div id="sort-info" class="shadows info">
-						<h2 id="sort-info-header"></h2>
+						<h2 id="sort-info-header" class="inline-header"></h2>
+						<button class="icon-button" id="edit-button">
+							<i class="fas fa-edit"></i>
+						</button>
 						<p id="sort-info-description"></p>
 					</div>
 					<div class="row" id="pseudo-code-row">
@@ -101,26 +104,28 @@
 				</div>
 			</div>
 			<div class="fullWidth col-xs-12">
-					<div id="input-sort-info" class="shadows info input-sort">
-							<h2>Sorting Information</h2>
-							
-							<label for="input-name">Algorithm Name</label>
-							<input id="input-name" class="form-control inputs" type="text" placeholder="Sorting Name">
-							
-							<label for="input-description">Algorithm Description</label>
-							<textarea id="input-description" class="form-control txta inputs" placeholder="Description"></textarea>
-							
-							<label for="input-worst-case">Worst Case</label>
-							<input id="input-worst-case" class="form-control inputs" type="text" value="O()">
-							
-							<label for="input-best-case">Best Case</label>
-							<input id="input-best-case" class="form-control inputs" type="text" value="Ω()"> 
+				<div id="input-sort-info" class="shadows info input-sort">
+					<h2>Sorting Information</h2>
 
-							<label for="input-pseudo-code">Pseudo Code</label>
-							<textarea id="input-pseudo-code" class="form-control txta inputs" placeholder="Pseudo-Code"></textarea>
-							
-							<label for="input-function">Algorithm Function (JS)</label>
-							<textarea id="input-function" class="form-control txta inputs" placeholder="Algorithm Function">
+					<label for="input-name">Algorithm Name</label>
+					<input id="input-name" class="form-control inputs" type="text" placeholder="Sorting Name">
+
+					<label for="input-description">Algorithm Description</label>
+					<textarea id="input-description" class="form-control txta inputs"
+						placeholder="Description"></textarea>
+
+					<label for="input-worst-case">Worst Case</label>
+					<input id="input-worst-case" class="form-control inputs" type="text" value="O()">
+
+					<label for="input-best-case">Best Case</label>
+					<input id="input-best-case" class="form-control inputs" type="text" value="Ω()">
+
+					<label for="input-pseudo-code">Pseudo Code</label>
+					<textarea id="input-pseudo-code" class="form-control txta inputs"
+						placeholder="Pseudo-Code"></textarea>
+
+					<label for="input-function">Algorithm Function (JS)</label>
+					<textarea id="input-function" class="form-control txta inputs" placeholder="Algorithm Function">
 var steps = [
 	[...blockArr]
 ];
@@ -135,9 +140,27 @@ for (var i = len - 1; i >= 0; i--) {
 	}
 }
 return steps;</textarea>
-							<button id="cancel-input" class="controls">Cancel</button>
-							<button id="save-input" class="controls">Save</button>
+					<div class="row" id="control-panel-input" style="margin: 4px">
+						<!-- Column that contains the delete button -->
+						<div class="col" style="padding-left: 0">
+							<button class="controls" id="delete-input">
+								Delete
+							</button>
 						</div>
+						<!-- Column that contains the cancel button -->
+						<div class="col">
+							<button class="controls" id="cancel-input">
+								Cancel
+							</button>
+						</div>
+						<!-- Column that contains the save button -->
+						<div class="col" style="padding-right: 0">
+							<button class="controls" id="save-input">
+								Save
+							</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
